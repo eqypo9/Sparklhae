@@ -16,8 +16,8 @@ export default {
         gold: '#d4af37',
       },
       fontFamily: {
-        futuristic: ['Antonio', 'sans-serif'],
-        body: ['Poppins', 'sans-serif'],
+        title: ['YUniverse-B', 'sans-serif'],
+        body: ['GmarketSansMedium', 'Nanum Gothic Coding', 'sans-serif'],
       },
       spacing: {
         '128': '32rem',
