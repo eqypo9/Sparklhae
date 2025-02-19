@@ -26,6 +26,7 @@ export default {
       animation: {
         fadeIn: 'fadeIn 1s ease-in-out',
         parallax: 'parallax 5s ease-in-out infinite',
+        floatUp: 'floatUp 2s ease-in-out forwards',
       },
       keyframes: {
         fadeIn: {
@@ -35,6 +36,10 @@ export default {
         parallax: {
           '0%': { transform: 'translateY(0)' },
           '100%': { transform: 'translateY(-10px)' },
+        },
+        floatUp: {
+          '0%': { transform: 'translateY(50px)' },
+          '100%': { transform: 'translateY(-50px)' },
         },
       },
     },

@@ -41,14 +41,14 @@ export default function Navbar() {
           Projects
         </a>
       </div>
-      {mounted && (
+      {/* {mounted && (
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
           className='bg-gray-700 text-white px-4 py-2 rounded-md hover:bg-gray-600 transition-all'
         >
           {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
         </button>
-      )}
+      )} */}
     </nav>
   );
 }
