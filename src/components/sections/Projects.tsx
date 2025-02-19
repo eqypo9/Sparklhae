@@ -4,7 +4,7 @@ export default function Projects() {
       id='projects'
       className='py-32 px-8 max-w-5xl mx-auto text-center text-white'
     >
-      <h2 className='text-5xl font-bold mb-8 text-cosmic_teal uppercase tracking-wide'>
+      <h2 className='text-5xl font-bold mb-8 text-white uppercase tracking-wide'>
         Projects
       </h2>
       <div className='grid grid-cols-1 sm:grid-cols-3 gap-6 text-lg'>

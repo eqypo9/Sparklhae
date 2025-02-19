@@ -10,7 +10,7 @@ export default function AboutMe() {
       <GridBackground /> 
       <div className='relative z-10'>
         <motion.h2
-          className='text-6xl font-bold mb-8 text-white uppercase tracking-wider'
+          className='text-5xl font-bold mb-8 text-white uppercase tracking-wider'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
