@@ -29,7 +29,7 @@ const experiences = [
   {
     category: 'Projects & Competitions',
     icon: '🚀',
-    description: '헬로핏 (스포츠 시설 추천 웹 서비스, Next.js)',
+    description: '헬로핏 - 스포츠 시설 추천 웹 서비스 (Next.js, Zustand)',
   },
 ];
 
@@ -39,25 +39,29 @@ export default function Experience() {
       id='experience'
       className='relative py-32 px-8 mx-auto text-center text-white overflow-hidden experience-section'
     >
+      {/* 배경 그라데이션 */}
+      <div className='absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#001f3f] to-[#5e548e] z-[-1]' />
+
       <div className='relative z-10'>
-        <h2 className='text-5xl font-bold mb-12 text-white uppercase tracking-wide'>
+        <h2 className='text-5xl font-bold mb-16 text-white uppercase tracking-wide'>
           Experience
         </h2>
 
-        <div className='grid grid-cols-2 gap-8 max-w-4xl mx-auto'>
+        {/* 카드 컨테이너 */}
+        <div className='flex flex-wrap justify-center items-center gap-12 max-w-5xl mx-auto'>
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              className='relative bg-gray-900/80 backdrop-blur-md p-6 rounded-lg shadow-lg flex flex-col items-center justify-center experience-card'
+              transition={{ delay: index * 0.15 }}
+              className='relative experience-card p-6 w-[300px] md:w-[400px]'
             >
-              <span className='text-4xl'>{exp.icon}</span>
-              <h3 className='text-2xl font-semibold text-cosmic_teal mt-4'>
+              <span className='text-3xl'>{exp.icon}</span>
+              <h3 className='text-xl font-semibold text-white mt-4 uppercase tracking-wider'>
                 {exp.category}
               </h3>
-              <p className='text-lg text-gray-300 mt-2'>{exp.description}</p>
+              <p className='text-sm text-gray-300 mt-2'>{exp.description}</p>
             </motion.div>
           ))}
         </div>
@@ -65,29 +69,42 @@ export default function Experience() {
 
       <style jsx>{`
         .experience-section {
-          background: linear-gradient(to bottom, #011627, #003459, #011627);
           position: relative;
         }
 
-        .experience-section::before {
+        /* 카드 스타일 (픽셀 느낌) */
+        .experience-card {
+          background: rgba(0, 0, 0, 0.8);
+          border: 2px solid white;
+          font-family: 'Courier New', Courier, monospace;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.3s ease-in-out;
+          position: relative;
+        }
+
+        /* 카드 사이 연결선 추가 */
+        .experience-card::after {
           content: '';
           position: absolute;
-          top: 10%;
-          left: 5%;
-          width: 90%;
-          height: 80%;
-          background-image: url('/images/dotted-curve.svg');
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: contain;
-          opacity: 0.6;
+          bottom: -25px;
+          left: 50%;
+          width: 2px;
+          height: 50px;
+          background: white;
+          opacity: 0.5;
         }
 
-        .experience-card {
-          border: 2px solid rgba(255, 255, 255, 0.1);
-          transition: transf#05030319;
+        /* 마지막 카드에는 연결선 없애기 */
+        .experience-card:last-child::after {
+          display: none;
         }
 
+        /* 카드 호버 효과 */
         .experience-card:hover {
           transform: scale(1.05);
         }
