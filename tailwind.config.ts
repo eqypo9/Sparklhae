@@ -10,12 +10,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        darkBlue: '#000000', // 수정하기
-        purpleAccent: '#5e548e', // 수정하기
-        neon: '#39ff14', // 수정하기
-        gold: '#d4af37', // 수정하기
-        highlight: '#6fffe9', // 수정하기
-        emphasis: '#5bc0be', // 수정하기
+        darkBlue: '#000000',
+        purpleAccent: '#5e548e',
+        neon: '#39ff14',
+        gold: '#d4af37',
+        highlight: '#6fffe9',
+        emphasis: '#5bc0be',
         cosmic_teal: '#34a0a4',
       },
       fontFamily: {
@@ -30,6 +30,7 @@ export default {
         fadeIn: 'fadeIn 1s ease-in-out',
         parallax: 'parallax 5s ease-in-out infinite',
         floatUp: 'floatUp 2s ease-in-out forwards',
+        twinkle: 'twinkle 3s infinite ease-in-out', // 🌟 추가된 부분
       },
       keyframes: {
         fadeIn: {
@@ -43,6 +44,11 @@ export default {
         floatUp: {
           '0%': { transform: 'translateY(50px)' },
           '100%': { transform: 'translateY(-50px)' },
+        },
+        twinkle: {
+          // 🌟 추가된 부분
+          '0%, 100%': { opacity: '0.2' },
+          '50%': { opacity: '1' },
         },
       },
     },

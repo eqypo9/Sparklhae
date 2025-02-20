@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { useRef } from 'react';
 import skills from '@/data/skills';
+import StarBackground from '@/components/StarBackground';
 
 export default function Skills() {
   const ref = useRef(null);
@@ -10,20 +11,21 @@ export default function Skills() {
     offset: ['start end', 'end start'],
   });
 
-  // Y축 이동
-  const yPosition = useTransform(scrollYProgress, [0, 1], ['-50vh', '100vh']);
-
-  // X축 이동
-  const xPosition = useTransform(scrollYProgress, [0, 1], ['-50vw', '50vw']);
-
-  // 크기 변화
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 2]);
-
-  // 투명도 변화
+  const yPosition = useTransform(scrollYProgress, [0, 1], ['-50vh', '120vh']);
+  const xPosition = useTransform(scrollYProgress, [0, 1], ['-40vw', '60vw']);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.5]);
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], ['0deg', '720deg']);
 
-  // 회전 속도
-  const rotate = useTransform(scrollYProgress, [0, 1], ['0deg', '1080deg']);
+  // ✅ 배경 그라데이션 변경 (소행성 이동에 따라 색감 변화)
+  const bgGradient = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [
+      'linear-gradient(to bottom, #071e3d, #0c2a48, #021015)',
+      'linear-gradient(to bottom, #021015, #0c2a48, #071e3d)',
+    ]
+  );
 
   return (
     <section
@@ -31,22 +33,25 @@ export default function Skills() {
       id='skills'
       className='relative py-32 px-8 mx-auto text-center text-white overflow-hidden'
     >
-      <div className='absolute inset-0 bg-gradient-to-b from-[#0a192f] via-[#0c2a48] to-black'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle,rgba(0,255,255,0.3)_0%,rgba(0,0,0,0)_80%)] opacity-50'></div>
+      <motion.div
+        className='absolute inset-0'
+        style={{ background: bgGradient }}
+      >
+        <StarBackground numStars={100} />
 
         <motion.div
           className='absolute'
           style={{ x: xPosition, y: yPosition, scale, opacity, rotate }}
         >
           <Image
-            src='/images/globe-outline.png'
-            alt='Globe Outline'
-            width={500}
-            height={500}
+            src='/images/asteroid.png'
+            alt='Asteroid'
+            width={300}
+            height={300}
             className='mix-blend-screen'
           />
         </motion.div>
-      </div>
+      </motion.div>
 
       <div className='relative z-10'>
         <h2 className='text-5xl font-bold mb-12 text-white uppercase tracking-wide'>
