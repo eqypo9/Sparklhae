@@ -1,26 +1,23 @@
 import { useEffect, useState } from 'react';
 
-interface StarType {
+interface Star {
   x: number;
   y: number;
   size: number;
   delay: number;
 }
 
-export default function StarBackground({ numStars = 50 }) {
-  const [stars, setStars] = useState<StarType[]>([]); 
+export default function StarBackground({ numStars = 150 }) {
+  const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
-    const generatedStars: StarType[] = Array.from({ length: numStars }).map(
-      () => ({
-        x: Math.random() * 100, // 0 ~ 100vw 랜덤 위치
-        y: Math.random() * 100, // 0 ~ 100vh 랜덤 위치
-        size: Math.random() * 3 + 1, // 1 ~ 4px 크기
-        delay: Math.random() * 3, // 0 ~ 3s 랜덤 딜레이
-      })
-    );
-
-    setStars(generatedStars); // ✅ 타입 일치!
+    const generatedStars: Star[] = Array.from({ length: numStars }, () => ({
+      x: Math.random() * window.innerWidth, // 전체 화면 가로 범위
+      y: Math.random() * window.innerHeight, // 전체 화면 세로 범위
+      size: Math.random() * 3 + 1, // 별 크기 (1px ~ 4px)
+      delay: Math.random() * 3, // 애니메이션 딜레이
+    }));
+    setStars(generatedStars);
   }, [numStars]);
 
   return (
@@ -30,13 +27,14 @@ export default function StarBackground({ numStars = 50 }) {
           key={index}
           className='absolute bg-white rounded-full animate-twinkle'
           style={{
-            top: `${star.y}vh`,
-            left: `${star.x}vw`,
+            left: `${star.x}px`,
+            top: `${star.y}px`, 
             width: `${star.size}px`,
             height: `${star.size}px`,
             animationDelay: `${star.delay}s`,
+            opacity: Math.random() * 0.7 + 0.3, 
           }}
-        ></div>
+        />
       ))}
     </div>
   );

@@ -11,13 +11,14 @@ export default function Skills() {
     offset: ['start end', 'end start'],
   });
 
-  const yPosition = useTransform(scrollYProgress, [0, 1], ['-50vh', '120vh']);
-  const xPosition = useTransform(scrollYProgress, [0, 1], ['-40vw', '60vw']);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.5]);
+  // 소행성 이동 범위
+  const yPosition = useTransform(scrollYProgress, [0, 1], ['-50vh', '150vh']);
+  const xPosition = useTransform(scrollYProgress, [0, 1], ['-40vw', '80vw']);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 2]);
   const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
-  const rotate = useTransform(scrollYProgress, [0, 1], ['0deg', '720deg']);
+  const rotate = useTransform(scrollYProgress, [0, 1], ['0deg', '1080deg']);
 
-  // ✅ 배경 그라데이션 변경 (소행성 이동에 따라 색감 변화)
+  // 배경 그라데이션 조정 (스크롤 시 변화)
   const bgGradient = useTransform(
     scrollYProgress,
     [0, 1],
@@ -31,13 +32,13 @@ export default function Skills() {
     <section
       ref={ref}
       id='skills'
-      className='relative py-32 px-8 mx-auto text-center text-white overflow-hidden'
+      className='relative min-h-screen py-32 px-8 mx-auto text-center text-white overflow-hidden'
     >
       <motion.div
         className='absolute inset-0'
         style={{ background: bgGradient }}
       >
-        <StarBackground numStars={100} />
+        <StarBackground numStars={150} />
 
         <motion.div
           className='absolute'
