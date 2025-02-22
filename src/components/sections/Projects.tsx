@@ -93,7 +93,12 @@ export default function Projects() {
         style={{ y: earthY }}
         className='absolute bottom-0 w-full flex justify-center'
       >
-        <Image src='/images/earth.png' alt='Earth' width={800} height={800} />
+        <Image
+          src='/images/earth_half.png'
+          alt='Earth Half'
+          width={800}
+          height={800}
+        />
       </motion.div>
     </section>
   );
