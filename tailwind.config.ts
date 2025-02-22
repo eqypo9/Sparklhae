@@ -30,7 +30,7 @@ export default {
         fadeIn: 'fadeIn 1s ease-in-out',
         parallax: 'parallax 5s ease-in-out infinite',
         floatUp: 'floatUp 2s ease-in-out forwards',
-        twinkle: 'twinkle 3s infinite ease-in-out', // 🌟 추가된 부분
+        twinkle: 'twinkle 3s infinite ease-in-out', 
       },
       keyframes: {
         fadeIn: {
@@ -46,7 +46,6 @@ export default {
           '100%': { transform: 'translateY(-50px)' },
         },
         twinkle: {
-          // 🌟 추가된 부분
           '0%, 100%': { opacity: '0.2' },
           '50%': { opacity: '1' },
         },
