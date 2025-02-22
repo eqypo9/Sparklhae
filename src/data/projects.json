@@ -1,0 +1,44 @@
+[
+  {
+    "id": "hellofit",
+    "name": "HELLO-FIT",
+    "description": "지도 기반 주변 인기 스포츠 시설을 탐색하는 서비스",
+    "image": "/images/projects/hellofit.png",
+    "techStack": ["Next.js", "Recoil", "TypeScript"],
+    "features": [
+      "지도 기반 스포츠 시설 탐색",
+      "누적 수강생 데이터 기반 인기 트렌드 추천",
+      "시설 후기 및 리뷰 작성 기능"
+    ],
+    "deployLink": "https://www.hellofit.site/",
+    "githubLink": "https://github.com/eqypo9/HelloFit_Front"
+  },
+  {
+    "id": "global-nomad",
+    "name": "Global Nomad",
+    "description": "여행 시 체험 상품을 간편하게 예약하는 서비스",
+    "image": "/images/projects/global-nomad.png",
+    "techStack": ["Next.js", "Tailwind CSS", "React Query"],
+    "features": [
+      "체험 상품 상세 페이지 개발",
+      "카카오 지도 연동으로 위치 제공",
+      "SSR + React Query를 활용한 데이터 최적화"
+    ],
+    "deployLink": "https://nomad-ebon.vercel.app/",
+    "githubLink": "https://github.com/eqypo9/global-nomad"
+  },
+  {
+    "id": "the-julge",
+    "name": "The Julge",
+    "description": "알바 구직자와 사장님을 연결하는 서비스",
+    "image": "/images/projects/the-julge.png",
+    "techStack": ["Next.js", "Styled Components", "Zustand"],
+    "features": [
+      "알바 구직자와 사장님 간 매칭 기능",
+      "채팅 시스템을 활용한 실시간 커뮤니케이션",
+      "구인 공고 및 지원 관리 기능"
+    ],
+    "deployLink": "https://the-julge.vercel.app/",
+    "githubLink": "https://github.com/eqypo9/TheJulge"
+  }
+]
