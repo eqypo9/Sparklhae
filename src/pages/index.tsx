@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Sparkle | Home</title>
+        <title>SparkleHae | Home</title>
       </Head>
 
       <HeroSection />

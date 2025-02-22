@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     <ThemeProvider attribute='class' defaultTheme='system'>
       <Head>
         <link rel='icon' href='/favicon.ico' sizes='any' />
-        <title>Sparkle | Portfolio</title>
+        <title>SparkleHae | Portfolio</title>
       </Head>
 
       <Layout>
