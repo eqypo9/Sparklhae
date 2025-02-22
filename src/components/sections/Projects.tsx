@@ -38,7 +38,7 @@ export default function Projects() {
   return (
     <section
       id='projects'
-      className='relative py-32 px-8 max-w-6xl mx-auto text-white min-h-screen'
+      className='relative py-32 px-8 max-w-6xl mx-auto text-white min-h-screen space-bg'
     >
       <h2 className='text-5xl font-bold mb-12 uppercase tracking-wide text-center'>
         Projects
@@ -93,13 +93,21 @@ export default function Projects() {
         style={{ y: earthY }}
         className='absolute bottom-0 w-full flex justify-center'
       >
-        <Image
-          src='/images/earth_half.png'
-          alt='Earth Half'
-          width={800}
-          height={800}
-        />
+        <Image src='/images/earth.png' alt='Earth' width={800} height={800} />
       </motion.div>
+
+      <style jsx>{`
+        .space-bg {
+          background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.3) 0%,
+            rgba(0, 0, 0, 0.8) 60%,
+            rgba(0, 0, 0, 1) 100%
+          );
+          position: relative;
+          overflow: hidden;
+        }
+      `}</style>
     </section>
   );
 }
