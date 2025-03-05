@@ -21,10 +21,10 @@ export default function GridBackground() {
       if (!canvas || !ctx) return;
 
       // 배경 그라데이션
-      // TO DO: 색상 수정하기
+      // TO DO: 색상 어둡게 수정하기
       const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      bgGradient.addColorStop(0, '#174035'); // 상단
-      bgGradient.addColorStop(1, '#2c766f'); // 하단
+      bgGradient.addColorStop(0, '#b8c0ff'); // 상단
+      bgGradient.addColorStop(1, '#98a4ff'); // 하단
 
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
