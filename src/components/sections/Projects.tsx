@@ -73,14 +73,18 @@ export default function Projects() {
                 <p className='text-sm text-gray-400 mt-2'>
                   {project.description}
                 </p>
-                <div className='flex justify-center gap-2 mt-4'>
+
+                {/* 기술 스택 - 애니메이션 & 스타일 추가 */}
+                <div className='flex flex-wrap justify-center gap-2 mt-4'>
                   {project.techStack.map((tech, index) => (
-                    <span
+                    <motion.div
                       key={index}
-                      className='bg-gray-700 px-2 py-1 text-xs rounded-md'
+                      whileHover={{ scale: 1.1, rotate: 3 }}
+                      transition={{ type: 'spring', stiffness: 200 }}
+                      className='bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-2 text-xs font-semibold rounded-full text-gray-300 shadow-lg transition-all duration-300 hover:from-cosmic_teal hover:to-cyan-500 hover:text-black'
                     >
                       {tech}
-                    </span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -89,6 +93,7 @@ export default function Projects() {
         ))}
       </div>
 
+      {/* 지구본 애니메이션 */}
       <motion.div
         style={{ y: earthY }}
         className='absolute bottom-0 w-full flex justify-center'
@@ -96,6 +101,7 @@ export default function Projects() {
         <Image src='/images/earth.png' alt='Earth' width={800} height={800} />
       </motion.div>
 
+      {/* 우주 배경 스타일 */}
       <style jsx>{`
         .space-bg {
           background: radial-gradient(
