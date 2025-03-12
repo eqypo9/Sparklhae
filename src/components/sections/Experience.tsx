@@ -1,39 +1,6 @@
 import { motion } from 'framer-motion';
-import { GraduationCap, Rocket, Users, Briefcase, Laptop2 } from 'lucide-react';
 import Clouds from '../Clouds';
-
-const experiences = [
-  {
-    category: 'Education',
-    icon: <GraduationCap size={28} className='text-white' />,
-    description: '덕성여자대학교 IT미디어공학 전공 (졸업)',
-  },
-  {
-    category: 'Bootcamp & Training',
-    icon: <Laptop2 size={28} className='text-white' />,
-    description: '코드잇 프론트엔드 부트캠프 (6개월 과정)',
-  },
-  {
-    category: 'Developer Community',
-    icon: <Users size={28} className='text-white' />,
-    description: 'GDSC 덕성 챕터 (Google Developer Student Club)',
-  },
-  {
-    category: 'Internship Experience',
-    icon: <Briefcase size={28} className='text-white' />,
-    description: '셈웨어 프론트엔드 인턴 (AlgeoMath UI 개선 및 성능 최적화)',
-  },
-  {
-    category: 'Internship Experience',
-    icon: <Briefcase size={28} className='text-white' />,
-    description: '코드잇 일경험 프로그램 (Next.js 기반 프로젝트 진행)',
-  },
-  {
-    category: 'Projects & Competitions',
-    icon: <Rocket size={28} className='text-white' />,
-    description: '헬로핏 - 스포츠 시설 추천 웹 서비스 (Next.js, Zustand)',
-  },
-];
+import experienceData from '@/data/experience';
 
 export default function Experience() {
   return (
@@ -48,24 +15,41 @@ export default function Experience() {
           Experience
         </h2>
 
-        <div className='relative flex flex-wrap justify-center items-center gap-12 max-w-5xl mx-auto'>
-          {experiences.map((exp, index) => (
+        <div className='relative flex flex-col items-center max-w-5xl mx-auto gap-24'>
+          {experienceData.map((exp, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.15 }}
-              className='relative bg-gray-900/80 p-6 w-[300px] md:w-[400px] rounded-lg shadow-lg 
+              className='relative bg-gray-900/80 py-8 px-6 w-[350px] md:w-[450px] rounded-lg shadow-lg 
                          flex flex-col items-center justify-center border border-gray-700 experience-card'
             >
-              {exp.icon}
-              <h3 className='text-xl font-semibold text-white mt-4 uppercase tracking-wider'>
-                {exp.category}
-              </h3>
+              {/* 아이콘 및 제목 */}
+              <div className='flex items-center gap-2'>
+                {exp.icon}
+                <h3 className='text-xl font-semibold text-white uppercase tracking-wider'>
+                  {exp.category}
+                </h3>
+              </div>
+
+              {/* 기간 */}
+              <p className='text-sm text-gray-400 mt-1'>{exp.period}</p>
+
+              {/* 설명 */}
               <p className='text-sm text-gray-300 mt-2'>{exp.description}</p>
 
-              {index !== experiences.length - 1 && (
-                <div className='absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 w-0 h-10 border-l-2 border-dashed border-gray-400'></div>
+              {/* 상세 내용 */}
+              <p className='text-xs text-gray-400 mt-2 italic whitespace-pre-line'>
+                {exp.details}
+              </p>
+
+              {/* 타임라인 선 연결 */}
+              {index !== experienceData.length - 1 && (
+                <div
+                  className='absolute bottom-[-85px] left-1/2 transform -translate-x-1/2 
+                                w-0 h-[72px] border-l-2 border-dashed border-gray-400'
+                ></div>
               )}
             </motion.div>
           ))}
