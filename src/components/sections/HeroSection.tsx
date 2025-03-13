@@ -10,6 +10,37 @@ export default function HeroSection() {
 
   const astronautY = useTransform(scrollYProgress, [0, 1], ['50%', '-10%']);
 
+  const smoothScrollTo = (targetY: number, duration = 1000) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    let startTime: number | null = null;
+
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easeInOutCubic =
+        progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+      window.scrollTo(0, startY + distance * easeInOutCubic);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const handleScrollToAbout = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      const targetY = aboutSection.offsetTop;
+      smoothScrollTo(targetY, 2000);
+    }
+  };
+
   return (
     <section
       ref={ref}
@@ -42,6 +73,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.5 }}
+        onClick={handleScrollToAbout}
       >
         Start Exploring
       </motion.button>
