@@ -37,7 +37,7 @@ export default function Experience() {
               <p className='text-sm text-gray-400 mt-1'>{exp.period}</p>
 
               {/* 설명 */}
-              <p className='text-sm text-gray-300 mt-2'>{exp.description}</p>
+              <p className='text-sm text-cosmic_teal mt-2'>{exp.description}</p>
 
               {/* 상세 내용 */}
               <p className='text-xs text-gray-400 mt-2 italic whitespace-pre-line'>

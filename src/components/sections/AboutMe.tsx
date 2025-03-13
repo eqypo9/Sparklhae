@@ -109,7 +109,7 @@ export default function AboutMe() {
                           border border-white backdrop-blur-md max-w-lg self-center'
           >
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
-              기본 정보
+              INFORMATION
             </h3>
             <div className='text-lg text-gray-300 space-y-2'>
               <p className='flex items-center gap-2'>
@@ -160,7 +160,7 @@ export default function AboutMe() {
                           border border-white backdrop-blur-md max-w-lg self-center'
           >
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
-              보유 자격증
+              CERTIFICATIONS
             </h3>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
               {certifications.map((cert, i) => (
