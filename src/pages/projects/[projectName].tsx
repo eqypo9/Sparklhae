@@ -203,7 +203,6 @@ export default function ProjectDetail() {
             )}
           </div>
         )}
-
         {/* 개발 과정 */}
         {activeTab === 'development' &&
           typeof project.development === 'object' && (
@@ -225,6 +224,20 @@ export default function ProjectDetail() {
                           </li>
                         ))}
                     </ul>
+
+                    {/* 코드 스니펫 표시 */}
+                    {section.code?.snippet && (
+                      <div className='mt-6'>
+                        <h5 className='text-lg font-semibold text-cosmic_teal'>
+                          코드 예제: {section.code.description}
+                        </h5>
+                        <pre className='bg-gray-900 text-gray-300 text-sm p-4 rounded-lg overflow-x-auto mt-3'>
+                          <code className='whitespace-pre-wrap'>
+                            {section.code.snippet}
+                          </code>
+                        </pre>
+                      </div>
+                    )}
                   </div>
                 ))}
             </div>

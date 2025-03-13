@@ -77,20 +77,52 @@
           ]
         },
         {
-          "title": "성능 최적화",
+          "title": "카카오 지도 API 성능 최적화",
           "content": [
-            "Kakao Maps API 초기화 최적화: useEffect 내부에서 직접 로드하는 방식에서 useKakaoMapLoader 훅으로 개선하여 중복 실행 방지",
-            "마커 렌더링 최적화: 기존에는 시설 목록 변경 시 모든 마커를 삭제하고 새로 생성하는 방식 → useFacilityMarkers 훅을 도입하여 기존 마커를 유지하면서 필요한 경우만 업데이트",
-            "검색 및 API 호출 최적화: useMemo와 debounce를 적용하여 불필요한 API 호출을 줄이고, 연속적인 검색에도 성능 저하가 없도록 개선"
-          ]
+            "카카오 지도 API의 불필요한 중복 실행을 방지하기 위해 useKakaoMapLoader 훅을 도입",
+            "지도 초기화 과정에서 useEffect를 활용하여 API 스크립트 로드와 상태 관리를 최적화",
+            "역지오코딩을 적용하여 사용자의 현재 위치를 기반으로 자동으로 지역명을 설정"
+          ],
+          "code": {
+            "description": "카카오 지도 API 스크립트를 로드하고, 사용자의 현재 위치를 반영하는 로직",
+            "snippet": "const loadKakaoMapScript = () => { ... };"
+          }
+        },
+        {
+          "title": "마커 렌더링 최적화",
+          "content": [
+            "기존 방식에서는 시설 목록이 변경될 때마다 모든 마커를 삭제하고 다시 생성하여 성능 저하 발생",
+            "useFacilityMarkers 훅을 활용하여 기존 마커를 유지하면서 필요한 경우만 업데이트",
+            "좌표 변환을 병렬 처리하여 로딩 속도를 개선하고, UI 깜빡임 문제를 해결"
+          ],
+          "code": {
+            "description": "좌표 변환을 병렬 처리하여 마커 렌더링 속도를 개선하는 코드",
+            "snippet": "const coordinates = await Promise.all(facilities.map(facility => fetchCoordinates(facility)));"
+          }
+        },
+        {
+          "title": "검색 및 API 호출 최적화",
+          "content": [
+            "AbortController를 활용하여 검색 중 새로운 요청이 들어오면 기존 요청을 취소하여 불필요한 API 호출 방지",
+            "useMemo와 debounce를 적용하여 연속적인 검색에도 성능 저하가 발생하지 않도록 개선",
+            "검색 결과가 없을 경우 사용자에게 명확한 피드백을 제공하여 UX 개선"
+          ],
+          "code": {
+            "description": "AbortController를 활용하여 불필요한 API 요청을 방지하는 코드",
+            "snippet": "if (abortControllerRef.current) { abortControllerRef.current.abort(); }"
+          }
         },
         {
           "title": "UI/UX 개선",
           "content": [
-            "필터링 기능 강화: 이용권 유형별 (일반/장애인) 필터 제공하여 사용자 맞춤 탐색 가능",
-            "반응형 디자인 적용: 모바일에서도 원활한 사용이 가능하도록 Tailwind CSS 기반의 UI 최적화",
-            "사용자 피드백 반영: UX 테스트를 진행하여 불편했던 검색 및 필터링 로직을 개선"
-          ]
+            "이용권 유형별 필터 제공 (일반/장애인)으로 사용자 맞춤 탐색 기능 강화",
+            "반응형 디자인을 적용하여 모바일 환경에서도 원활한 탐색 가능",
+            "UX 테스트를 통해 검색 및 필터링 로직을 개선하여 사용자의 피드백을 반영"
+          ],
+          "code": {
+            "description": "이용권 유형별 필터 기능을 구현한 코드",
+            "snippet": "const filteredFacilities = facilities.filter(facility => facility.type === selectedType);"
+          }
         }
       ]
     },
