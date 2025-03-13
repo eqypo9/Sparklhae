@@ -27,40 +27,41 @@
     "overview": {
       "title": "HELLOFIT 프로젝트 개요",
       "content": [
-        "HELLOFIT은 공공데이터를 활용하여 스포츠 이용권이 적용되는 시설을 탐색하는 서비스입니다.",
-        "기존 스포츠 강좌 예약 시스템에서는 시설의 위치와 정보를 개별적으로 확인해야 하는 번거로움이 있었습니다.",
-        "HELLOFIT은 지도 기반 탐색, 인기 시설 추천, 후기 시스템을 도입하여 사용자 경험을 개선하는 것을 목표로 합니다."
+        "HELLOFIT은 공공데이터를 활용하여 스포츠 이용권이 적용되는 시설을 쉽게 탐색할 수 있는 서비스입니다.",
+        "기존 스포츠 강좌 예약 시스템에서는 시설의 위치, 이용권 적용 여부, 강좌 정보를 개별적으로 확인해야 하는 번거로움이 있었습니다.",
+        "HELLOFIT은 지도 기반 탐색, 인기 시설 추천, 후기 시스템을 통해 사용자가 보다 직관적으로 원하는 정보를 찾을 수 있도록 UX를 개선하는 것을 목표로 합니다.",
+        "또한, 필터링과 맞춤형 추천 기능을 강화하여 사용자들이 자신에게 최적화된 스포츠 시설을 쉽게 찾을 수 있도록 설계되었습니다."
       ]
     },
     "featuresDetail": [
       {
         "title": "지도 기반 스포츠 시설 탐색",
-        "description": "사용자의 현재 위치를 기반으로 가까운 스포츠 시설을 지도에서 탐색할 수 있도록 지원.",
+        "description": "사용자의 현재 위치를 기반으로 가까운 스포츠 시설을 한눈에 확인할 수 있습니다. 필터를 활용하여 원하는 시설을 더욱 빠르게 찾을 수 있습니다.",
         "image": "/images/projects/hellofit/overview_1.png"
       },
       {
         "title": "이용권 유형별 맞춤 정보 제공",
-        "description": "일반 이용권과 장애인 이용권을 구분하여 맞춤형 정보를 제공.",
+        "description": "일반 이용권과 장애인 이용권을 구분하여 맞춤형 정보를 제공합니다. 사용자는 자신의 이용권에 해당하는 강좌만 확인할 수 있어 검색 효율이 높아집니다.",
         "image": "/images/projects/hellofit/overview_2.png"
       },
       {
         "title": "누적 수강생 수 기반 인기 스포츠 종목 추천",
-        "description": "누적 수강생 데이터를 기반으로 인기 있는 스포츠 종목을 분석하고 필터링 기능 제공.",
+        "description": "이용자 데이터를 분석하여 가장 인기 있는 스포츠 종목을 추천합니다. 이를 통해 사용자들은 인기 있는 강좌를 쉽게 찾을 수 있습니다.",
         "image": "/images/projects/hellofit/overview_4.png"
       },
       {
         "title": "지역별 인기 시설 추천",
-        "description": "누적 수강생 수를 기반으로 인기 시설을 추천하여 사용자 맞춤 탐색 기능 강화.",
+        "description": "누적 수강생 수 데이터를 기반으로 지역별 인기 시설을 추천하여 맞춤형 탐색 기능을 제공합니다.",
         "image": "/images/projects/hellofit/overview_5.png"
       },
       {
         "title": "시설 후기 및 별점 시스템",
-        "description": "시설 이용자의 후기를 등록하고 별점을 평가할 수 있는 기능 제공.",
+        "description": "사용자들이 직접 남긴 후기를 확인하고 별점 평가를 참고하여 최적의 시설을 선택할 수 있습니다.",
         "image": "/images/projects/hellofit/overview_6.png"
       },
       {
         "title": "관심 시설 저장 및 알림 기능",
-        "description": "관심 시설 저장 및 신규 강좌 개설 알림 기능 제공.",
+        "description": "자주 이용하는 시설을 저장하고, 신규 강좌가 개설될 경우 알림을 받을 수 있는 기능을 제공합니다.",
         "image": "/images/projects/hellofit/overview_7.png"
       }
     ],
@@ -79,13 +80,13 @@
         {
           "title": "카카오 지도 API 성능 최적화",
           "content": [
-            "카카오 지도 API의 불필요한 중복 실행을 방지하기 위해 useKakaoMapLoader 훅을 도입",
-            "지도 초기화 과정에서 useEffect를 활용하여 API 스크립트 로드와 상태 관리를 최적화",
-            "역지오코딩을 적용하여 사용자의 현재 위치를 기반으로 자동으로 지역명을 설정"
+            "카카오 지도 API의 불필요한 중복 실행을 방지하기 위해 useKakaoMapLoader 훅을 도입.",
+            "지도 초기화 과정에서 useEffect를 활용하여 API 스크립트 로드와 상태 관리를 최적화.",
+            "역지오코딩을 적용하여 사용자의 현재 위치를 기반으로 자동으로 지역명을 설정."
           ],
           "code": {
-            "description": "카카오 지도 API 스크립트를 로드하고, 사용자의 현재 위치를 반영하는 로직",
-            "snippet": "const loadKakaoMapScript = () => { ... };"
+            "description": "카카오 지도 API 스크립트 로드 및 사용자의 현재 위치 적용",
+            "snippet": "import { useEffect, useState } from 'react';\n\nconst useKakaoMapLoader = (mapContainerId) => {\n  const [map, setMap] = useState(null);\n  \n  useEffect(() => {\n    const loadScript = () => {\n      if (window.kakao && window.kakao.maps) {\n        initMap();\n        return;\n      }\n      \n      const script = document.createElement('script');\n      script.src = 'https://dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_APP_KEY&libraries=services&autoload=false';\n      script.async = true;\n      script.onload = () => {\n        window.kakao.maps.load(() => initMap());\n      };\n      document.head.appendChild(script);\n    };\n\n    const initMap = () => {\n      const container = document.getElementById(mapContainerId);\n      const options = { center: new window.kakao.maps.LatLng(37.5665, 126.978), level: 5 };\n      const kakaoMap = new window.kakao.maps.Map(container, options);\n      setMap(kakaoMap);\n      getUserLocation(kakaoMap);\n    };\n\n    const getUserLocation = (mapInstance) => {\n      if (navigator.geolocation) {\n        navigator.geolocation.getCurrentPosition((position) => {\n          const userLatLng = new window.kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);\n          mapInstance.setCenter(userLatLng);\n          reverseGeocode(userLatLng);\n        });\n      }\n    };\n\n    const reverseGeocode = (latLng) => {\n      const geocoder = new window.kakao.maps.services.Geocoder();\n      geocoder.coord2RegionCode(latLng.getLng(), latLng.getLat(), (result, status) => {\n        if (status === window.kakao.maps.services.Status.OK) {\n          console.log('현재 위치:', result[0].address_name);\n        }\n      });\n    };\n\n    loadScript();\n  }, [mapContainerId]);\n};"
           }
         },
         {
@@ -98,6 +99,17 @@
           "code": {
             "description": "좌표 변환을 병렬 처리하여 마커 렌더링 속도를 개선하는 코드",
             "snippet": "const coordinates = await Promise.all(facilities.map(facility => fetchCoordinates(facility)));"
+          }
+        },
+        {
+          "title": "Recoil을 활용한 지도 필터 상태 관리",
+          "content": [
+            "Recoil을 활용하여 사용자가 선택한 스포츠 종목 필터를 상태로 관리.",
+            "필터 상태가 변경될 때마다 마커가 갱신되도록 구현."
+          ],
+          "code": {
+            "description": "Recoil을 활용한 지도 필터 상태 코드",
+            "snippet": "import { atom, selector } from 'recoil';\n\nexport const selectedSportState = atom({\n  key: 'selectedSport',\n  default: '전체',\n});\n\nexport const filteredFacilitiesState = selector({\n  key: 'filteredFacilities',\n  get: ({ get }) => {\n    const selectedSport = get(selectedSportState);\n    return facilities.filter(facility => facility.sport === selectedSport);\n  }\n});"
           }
         },
         {
@@ -137,6 +149,7 @@
             "AbortController를 활용하여 불필요한 API 요청을 방지.",
             "좌표 변환(fetchCoordinates)을 병렬 처리하여 렌더링 속도 개선."
           ],
+          "lesson": "API 호출을 최적화하는 것이 성능 개선에 중요한 영향을 미친다는 점을 실감했습니다. 특히, 불필요한 리렌더링을 줄이는 것이 사용자 경험(UX)에 미치는 영향을 직접 확인할 수 있었습니다.",
           "code": {
             "description": "좌표 변환을 병렬 처리하여 렌더링 속도를 개선",
             "snippet": "const coordinates = await Promise.all(facilities.map(facility => fetchCoordinates(facility)));"
@@ -149,6 +162,7 @@
             "usePositionButton 훅을 활용하여 사용자의 위치를 캐싱하고, 한 번 가져온 위치를 재사용하도록 개선.",
             "위치 허용 여부를 확인하여 허용하지 않을 경우 기본 위치를 설정."
           ],
+          "lesson": "사용자의 행동 패턴을 고려하여 API 요청을 최적화하는 것이 중요하다는 점을 배웠습니다. 불필요한 중복 요청을 줄이는 방식(캐싱, 상태 관리 등)을 적용하면 성능과 UX를 동시에 개선할 수 있음을 경험했습니다.",
           "code": {
             "description": "사용자의 위치를 캐싱하여 불필요한 호출 방지",
             "snippet": "const [cachedLocation, setCachedLocation] = useState(null);\nconst moveToUserLocation = () => {\n  if (cachedLocation) { map.setCenter(cachedLocation); return; }\n  navigator.geolocation.getCurrentPosition(position => {\n    const userLatLng = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);\n    setCachedLocation(userLatLng);\n    map.setCenter(userLatLng);\n  });\n};"
@@ -161,7 +175,8 @@
             "useFacilityMarkers 훅에서 기존 마커를 재사용할 수 있도록 개선.",
             "setCenter 호출 시 기존 마커가 유지되도록 수정.",
             "useEffect 의존성을 최소화하여 불필요한 리렌더링 방지."
-          ]
+          ],
+          "lesson": "불필요한 상태 변경을 방지하고, 최소한의 리렌더링으로 데이터를 유지하는 것이 성능 최적화에 큰 영향을 미친다는 것을 배웠습니다. useEffect의 의존성을 관리하는 것이 중요한 이유를 다시 한번 실감했습니다."
         },
         {
           "title": "지역 검색 시 정확하지 않은 검색 결과",
@@ -169,7 +184,8 @@
           "solution": [
             "simplifyRegionName 유틸 함수를 사용하여 시/군/구 단위로 변환.",
             "kakao.maps.services.Geocoder() 호출 시 검색 결과를 검증하여 첫 번째 결과만 사용."
-          ]
+          ],
+          "lesson": "외부 API를 사용할 때는 데이터가 항상 정확하다고 가정하면 안 된다는 점을 깨달았습니다. 데이터를 정제하고 가공하는 로직이 사용자 경험에 중요한 영향을 미친다는 점을 배웠습니다."
         }
       ]
     }

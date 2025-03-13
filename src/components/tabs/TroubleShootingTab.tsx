@@ -5,7 +5,11 @@ interface TroubleshootingTabProps {
       title: string;
       problem: string;
       solution: string[];
-      code?: { snippet?: string };
+      lesson?: string;
+      code?: {
+        description?: string;
+        snippet?: string;
+      };
     }[];
   };
 }
@@ -22,6 +26,7 @@ export default function TroubleshootingTab({
         <div key={index} className='mt-8'>
           <h4 className='text-2xl font-semibold text-red-400'>{issue.title}</h4>
           <p className='text-lg text-gray-400 mt-2'>{issue.problem}</p>
+
           <h5 className='text-lg font-semibold text-cosmic_teal mt-4'>
             해결 방법
           </h5>
@@ -32,6 +37,15 @@ export default function TroubleshootingTab({
               </li>
             ))}
           </ul>
+
+          {issue.lesson && (
+            <div className='mt-6 p-4 bg-gray-800 rounded-lg border-l-4 border-cosmic_teal shadow-lg'>
+              <h5 className='text-lg font-semibold text-cosmic_teal'>
+                배운 점 (Lesson)
+              </h5>
+              <p className='text-gray-300 mt-2'>{issue.lesson}</p>
+            </div>
+          )}
 
           {issue.code?.snippet && (
             <div className='mt-6'>
