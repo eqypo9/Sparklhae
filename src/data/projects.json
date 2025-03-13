@@ -130,27 +130,45 @@
       "title": "트러블슈팅",
       "issues": [
         {
-          "title": "Kakao Maps API 중복 로드 문제",
-          "problem": "개발 모드(Strict Mode)에서 useEffect가 두 번 실행되면서 Kakao Maps API가 중복 로드되는 문제 발생.",
+          "title": "마커 플리커 현상 & 과도한 API 호출 문제",
+          "problem": "시설 목록이 변경될 때마다 기존 마커를 삭제하고 새로 생성하여 UI가 깜빡이며, 과도한 API 요청이 발생하여 성능이 저하됨.",
           "solution": [
-            "useKakaoMapLoader 훅을 도입하여 API 로드를 한 번만 수행하도록 변경.",
-            "useRef를 활용하여 API가 이미 로드된 경우 다시 실행되지 않도록 처리."
-          ]
-        },
-        {
-          "title": "마커 깜빡임 현상(Flickering) 해결",
-          "problem": "시설 목록이 변경될 때마다 기존 마커를 삭제하고 다시 생성하면서 UI가 깜빡이는 현상 발생.",
-          "solution": [
-            "useFacilityMarkers 훅을 도입하여 기존 마커가 있는 경우 새로운 마커만 업데이트하는 방식으로 개선.",
-            "AbortController를 활용하여 불필요한 API 요청을 줄임."
-          ]
+            "useFacilityMarkers 훅을 도입하여 기존 마커를 유지하며 필요한 경우만 업데이트.",
+            "AbortController를 활용하여 불필요한 API 요청을 방지.",
+            "좌표 변환(fetchCoordinates)을 병렬 처리하여 렌더링 속도 개선."
+          ],
+          "code": {
+            "description": "좌표 변환을 병렬 처리하여 렌더링 속도를 개선",
+            "snippet": "const coordinates = await Promise.all(facilities.map(facility => fetchCoordinates(facility)));"
+          }
         },
         {
           "title": "현재 위치 탐색 시 불필요한 API 호출 문제",
-          "problem": "navigator.geolocation.getCurrentPosition을 호출할 때마다 API 요청이 발생하여 성능 저하가 발생.",
+          "problem": "사용자가 현재 위치 버튼을 여러 번 클릭하면 같은 API 요청이 반복 호출되면서 성능이 저하됨.",
           "solution": [
-            "usePositionButton 훅을 활용하여 사용자의 현재 위치를 캐싱하고, 한 번 가져온 위치를 재사용하도록 변경.",
-            "사용자의 위치 허용 여부에 따라 기본 위치를 설정하여 UX 개선."
+            "usePositionButton 훅을 활용하여 사용자의 위치를 캐싱하고, 한 번 가져온 위치를 재사용하도록 개선.",
+            "위치 허용 여부를 확인하여 허용하지 않을 경우 기본 위치를 설정."
+          ],
+          "code": {
+            "description": "사용자의 위치를 캐싱하여 불필요한 호출 방지",
+            "snippet": "const [cachedLocation, setCachedLocation] = useState(null);\nconst moveToUserLocation = () => {\n  if (cachedLocation) { map.setCenter(cachedLocation); return; }\n  navigator.geolocation.getCurrentPosition(position => {\n    const userLatLng = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);\n    setCachedLocation(userLatLng);\n    map.setCenter(userLatLng);\n  });\n};"
+          }
+        },
+        {
+          "title": "지도 이동 시 마커 초기화 문제",
+          "problem": "지도를 이동할 때 기존 마커가 유지되지 않고 다시 그려지는 문제 발생.",
+          "solution": [
+            "useFacilityMarkers 훅에서 기존 마커를 재사용할 수 있도록 개선.",
+            "setCenter 호출 시 기존 마커가 유지되도록 수정.",
+            "useEffect 의존성을 최소화하여 불필요한 리렌더링 방지."
+          ]
+        },
+        {
+          "title": "지역 검색 시 정확하지 않은 검색 결과",
+          "problem": "검색된 지역명이 너무 길거나 복잡하여 API가 정확한 좌표를 반환하지 않는 경우 발생.",
+          "solution": [
+            "simplifyRegionName 유틸 함수를 사용하여 시/군/구 단위로 변환.",
+            "kakao.maps.services.Geocoder() 호출 시 검색 결과를 검증하여 첫 번째 결과만 사용."
           ]
         }
       ]
