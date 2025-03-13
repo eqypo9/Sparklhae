@@ -35,8 +35,8 @@ export default function AboutMe() {
       <div className='relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 max-w-5xl mx-auto'>
         {/* 왼쪽 영역 - 프로필 + 상태 메시지 박스 */}
         <div
-          className='relative flex flex-col items-center bg-gradient-to-b from-[#16213E] to-[#1B1D36] px-8 py-10 
-                          rounded-2xl shadow-lg border border-white backdrop-blur-md w-full md:w-1/2'
+          className='relative flex flex-col items-center bg-gray-900/80 px-8 py-10 
+                          rounded-2xl shadow-lg backdrop-blur-md w-full md:w-1/2'
         >
           {/* 우주비행사 아이콘 */}
           <div className='relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-xl'>
@@ -84,18 +84,10 @@ export default function AboutMe() {
 
           {/* 이전 / 다음 버튼 */}
           <div className='flex justify-between items-center w-[250px] mt-4'>
-            <button
-              onClick={handlePrev}
-              className='p-4 rounded-full shadow-md bg-white/20 backdrop-blur-md text-white 
-                        hover:bg-white/40 transition duration-300 border border-white'
-            >
+            <button onClick={handlePrev}>
               <ArrowLeft size={28} />
             </button>
-            <button
-              onClick={handleNext}
-              className='p-4 rounded-full shadow-md bg-white/20 backdrop-blur-md text-white 
-                        hover:bg-white/40 transition duration-300 border border-white'
-            >
+            <button onClick={handleNext}>
               <ArrowRight size={28} />
             </button>
           </div>
@@ -105,8 +97,8 @@ export default function AboutMe() {
         <div className='flex flex-col items-center justify-center w-full md:w-1/2 gap-8'>
           {/* 기본 정보 카드 */}
           <div
-            className='bg-gradient-to-b from-[#1A1D2F] to-[#10121B] p-6 md:p-8 rounded-2xl shadow-md 
-                          border border-white backdrop-blur-md max-w-lg self-center'
+            className='bg-gray-900/80 p-6 md:p-8 rounded-2xl shadow-md 
+                          backdrop-blur-md max-w-lg self-center'
           >
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
               INFORMATION
@@ -156,8 +148,8 @@ export default function AboutMe() {
 
           {/* 자격증 카드 */}
           <div
-            className='bg-gradient-to-b from-[#1B1D36] to-[#0D0F1B] p-6 md:p-8 rounded-2xl shadow-md 
-                          border border-white backdrop-blur-md max-w-lg self-center'
+            className='bg-gray-900/80 p-6 md:p-8 rounded-2xl shadow-md 
+                           backdrop-blur-md max-w-lg self-center'
           >
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
               CERTIFICATIONS
@@ -169,8 +161,8 @@ export default function AboutMe() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.2 }}
-                  className='bg-gradient-to-br from-[#2A2D45] to-[#1B1D36] p-4 rounded-lg shadow-md flex flex-col items-center 
-                            border border-white backdrop-blur-md'
+                  className='p-4 rounded-lg shadow-md flex flex-col items-center 
+                            border border-white'
                 >
                   <Award size={36} className='text-white' />
                   <h4 className='text-lg font-semibold text-white mt-2'>

@@ -58,41 +58,32 @@
         "description": "관심 시설 저장 및 신규 강좌 개설 알림 기능 제공."
       }
     ],
-    "retrospective": {
-      "title": "리팩토링 과정 및 성능 개선",
+    "development": {
+      "title": "개발 과정",
       "sections": [
         {
-          "title": "지도 API 초기화 최적화",
-          "problem": "기존에는 useEffect 내부에서 직접 Kakao Maps API를 로드하여 중복 실행되는 문제가 발생함.",
-          "solution": [
-            "Kakao Maps API 로딩을 담당하는 useKakaoMapLoader 훅을 분리하여 API 로드와 지도 초기화 로직을 개별적으로 관리.",
-            "useRef를 활용하여 Kakao Maps API가 이미 로드된 경우 중복 실행되지 않도록 개선.",
-            "지도 객체를 상태로 관리하여 불필요한 리렌더링 방지."
+          "title": "핵심 기여",
+          "content": [
+            "공공데이터 API를 활용하여 스포츠 시설 데이터를 동적으로 로드하는 기능 구현",
+            "NextAuth를 활용한 소셜 로그인 (Google, Kakao) 도입",
+            "사용자 경험을 고려한 UI/UX 개선: 지도 기반 탐색 최적화 및 필터링 기능 강화",
+            "카카오 지도 API와 Recoil을 결합하여 상태 관리를 최적화하여 성능 개선"
           ]
         },
         {
-          "title": "마커 렌더링 최적화",
-          "problem": "시설 목록이 변경될 때 기존 마커를 모두 삭제하고 새롭게 생성하는 방식으로 인해 UI가 깜빡이는 현상이 발생함.",
-          "solution": [
-            "마커 상태를 관리하는 useFacilityMarkers 훅을 도입하여 기존 마커를 유지하면서 필요한 경우에만 업데이트.",
-            "AbortController를 활용하여 이전 API 요청을 취소하고 최신 데이터만 반영하도록 변경.",
-            "기존 마커를 지우고 다시 생성하는 방식 대신, 상태 변화를 최소화하는 방향으로 수정하여 성능 개선."
+          "title": "성능 최적화",
+          "content": [
+            "Kakao Maps API 초기화 최적화: useEffect 내부에서 직접 로드하는 방식에서 useKakaoMapLoader 훅으로 개선하여 중복 실행 방지",
+            "마커 렌더링 최적화: 기존에는 시설 목록 변경 시 모든 마커를 삭제하고 새로 생성하는 방식 → useFacilityMarkers 훅을 도입하여 기존 마커를 유지하면서 필요한 경우만 업데이트",
+            "검색 및 API 호출 최적화: useMemo와 debounce를 적용하여 불필요한 API 호출을 줄이고, 연속적인 검색에도 성능 저하가 없도록 개선"
           ]
         },
         {
-          "title": "지역 검색 및 시설 데이터 로딩 최적화",
-          "problem": "지역을 연속적으로 선택할 경우에도 불필요한 API 호출이 발생하며, 검색 시 API 호출이 여러 번 실행되는 문제가 있음.",
-          "solution": [
-            "useRegionSearch 훅을 도입하여 지역 변경 시 이전 선택한 지역과 비교하여 동일한 경우 API 요청을 수행하지 않도록 최적화.",
-            "useMemo와 debounce를 적용하여 불필요한 API 호출을 줄이고, 요청이 과도하게 발생하지 않도록 개선."
-          ]
-        },
-        {
-          "title": "현재 위치 탐색 기능 개선",
-          "problem": "navigator.geolocation.getCurrentPosition 사용 시 사용자 허용 여부에 따라 위치 정보를 가져오지 못하는 경우가 발생.",
-          "solution": [
-            "usePositionButton 훅을 도입하여 사용자의 현재 위치 상태를 캐싱하고, 한 번 가져온 위치를 유지하도록 변경.",
-            "위치 요청이 실패할 경우 기본 위치(서울 시청)로 설정하여 UX 개선."
+          "title": "UI/UX 개선",
+          "content": [
+            "필터링 기능 강화: 이용권 유형별 (일반/장애인) 필터 제공하여 사용자 맞춤 탐색 가능",
+            "반응형 디자인 적용: 모바일에서도 원활한 사용이 가능하도록 Tailwind CSS 기반의 UI 최적화",
+            "사용자 피드백 반영: UX 테스트를 진행하여 불편했던 검색 및 필터링 로직을 개선"
           ]
         }
       ]

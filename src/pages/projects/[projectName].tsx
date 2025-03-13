@@ -9,7 +9,7 @@ export default function ProjectDetail() {
   const project = projectsData.find((p) => p.id === projectName);
 
   const [activeTab, setActiveTab] = useState<
-    'overview' | 'retrospective' | 'troubleshooting'
+    'overview' | 'development' | 'troubleshooting'
   >('overview');
 
   if (!router.isReady || !project) {
@@ -39,15 +39,15 @@ export default function ProjectDetail() {
       {/* 탭 메뉴 */}
       <div className='flex mt-12 border-b border-gray-700 justify-center space-x-8'>
         {[
-          { key: 'overview', label: '소개' },
-          { key: 'retrospective', label: '리팩토링' },
+          { key: 'overview', label: '프로젝트 소개' },
+          { key: 'development', label: '개발 과정' },
           { key: 'troubleshooting', label: '트러블슈팅' },
         ].map((tab) => (
           <button
             key={tab.key}
             onClick={() =>
               setActiveTab(
-                tab.key as 'overview' | 'retrospective' | 'troubleshooting'
+                tab.key as 'overview' | 'development' | 'troubleshooting'
               )
             }
             className={`px-6 py-3 text-lg font-semibold transition-all ${
@@ -129,28 +129,21 @@ export default function ProjectDetail() {
           </div>
         )}
 
-        {/* 리팩토링 과정 (retrospective) */}
-        {activeTab === 'retrospective' &&
-          typeof project.retrospective === 'object' && (
+        {activeTab === 'development' &&
+          typeof project.development === 'object' && (
             <div>
               <h3 className='text-3xl font-bold text-cosmic_teal'>
-                {project.retrospective.title}
+                {project.development.title}
               </h3>
-              {Array.isArray(project.retrospective.sections) &&
-                project.retrospective.sections.map((section, index) => (
+              {Array.isArray(project.development.sections) &&
+                project.development.sections.map((section, index) => (
                   <div key={index} className='mt-8'>
                     <h4 className='text-2xl font-semibold text-cosmic_teal'>
                       {section.title}
                     </h4>
-                    <p className='text-lg text-gray-400 mt-2'>
-                      {section.problem}
-                    </p>
-                    <h5 className='text-lg font-semibold text-green-400 mt-4'>
-                      ✅ 해결 방법
-                    </h5>
-                    <ul className='list-disc list-inside mt-2 space-y-2'>
-                      {Array.isArray(section.solution) &&
-                        section.solution.map((item, i) => (
+                    <ul className='list-disc list-inside mt-4 space-y-2 text-gray-400'>
+                      {Array.isArray(section.content) &&
+                        section.content.map((item, i) => (
                           <li key={i} className='text-lg text-gray-300'>
                             {item}
                           </li>
@@ -161,7 +154,6 @@ export default function ProjectDetail() {
             </div>
           )}
 
-        {/* 트러블슈팅 (troubleshooting) */}
         {activeTab === 'troubleshooting' &&
           typeof project.troubleshooting === 'object' && (
             <div>
@@ -178,7 +170,7 @@ export default function ProjectDetail() {
                       {issue.problem}
                     </p>
                     <h5 className='text-lg font-semibold text-green-400 mt-4'>
-                      ✅ 해결 방법
+                      해결 방법
                     </h5>
                     <ul className='list-disc list-inside mt-2 space-y-2'>
                       {Array.isArray(issue.solution) &&
