@@ -20,11 +20,10 @@ export default function GridBackground() {
     function drawBackground() {
       if (!canvas || !ctx) return;
 
-      // 배경 그라데이션
-      // TO DO: 색상 어둡게 수정하기
+      // 어두운 청록색 그라데이션 배경
       const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      bgGradient.addColorStop(0, '#b8c0ff'); // 상단
-      bgGradient.addColorStop(1, '#98a4ff'); // 하단
+      bgGradient.addColorStop(0, '#003f5c'); // 상단 (어두운 청록)
+      bgGradient.addColorStop(1, '#007f8c'); // 하단 (좀 더 밝은 청록)
 
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -34,8 +33,8 @@ export default function GridBackground() {
 
       // 모눈 선 그라데이션
       const lineGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      lineGradient.addColorStop(0, 'rgba(246, 239, 239, 0.5)'); // 상단
-      lineGradient.addColorStop(1, 'rgba(255, 255, 255, 0.2)'); // 하단
+      lineGradient.addColorStop(0, 'rgba(180, 220, 255, 0.3)'); // 상단 (연한 청록)
+      lineGradient.addColorStop(1, 'rgba(180, 220, 255, 0.1)'); // 하단 (더 투명한 청록)
 
       ctx.strokeStyle = lineGradient;
       ctx.lineWidth = 1;
