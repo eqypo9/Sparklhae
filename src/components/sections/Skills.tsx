@@ -47,8 +47,8 @@ export default function Skills() {
           <Image
             src='/images/asteroid.png'
             alt='Asteroid'
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             className='mix-blend-screen'
           />
         </motion.div>

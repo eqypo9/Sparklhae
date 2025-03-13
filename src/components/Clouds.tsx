@@ -6,25 +6,25 @@ const clouds = [
     src: '/images/clouds/cloud1.png',
     y: 300,
     direction: 'left',
-    xEnd: '-200px',
+    xEnd: '-250px',
   },
   {
     src: '/images/clouds/cloud2.png',
-    y: 400,
+    y: 750,
     direction: 'right',
-    xEnd: '220px',
+    xEnd: '300px',
   },
   {
     src: '/images/clouds/cloud3.png',
-    y: 500,
+    y: 1200,
     direction: 'left',
-    xEnd: '-320px',
+    xEnd: '-350px',
   },
   {
     src: '/images/clouds/cloud4.png',
-    y: 600,
+    y: 1650,
     direction: 'right',
-    xEnd: '330px',
+    xEnd: '400px',
   },
 ];
 
@@ -56,8 +56,8 @@ export default function Clouds() {
             <Image
               src={cloud.src}
               alt={`Cloud ${index}`}
-              width={480}
-              height={300}
+              width={640}
+              height={400}
               className='blur-sm'
             />
           </motion.div>
