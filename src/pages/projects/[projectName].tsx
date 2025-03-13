@@ -167,16 +167,31 @@ export default function ProjectDetail() {
                 <h3 className='text-3xl font-bold mt-10 text-cosmic_teal'>
                   주요 기능
                 </h3>
-                <ul className='list-disc list-inside mt-4 space-y-4'>
+                <ul className='mt-6 space-y-12'>
                   {project.featuresDetail.map((feature, index) => (
-                    <li key={index} className='mt-2'>
-                      <strong className='text-xl font-semibold text-cosmic_teal'>
+                    <li key={index} className='flex flex-col'>
+                      {/* 제목 */}
+                      <strong className='text-xl font-semibold text-cosmic_teal text-center'>
                         {feature.title}:
                       </strong>
-                      <span className='text-lg text-gray-300'>
-                        {' '}
+
+                      {/* 설명 */}
+                      <p className='text-lg text-gray-300 mt-2 text-center w-full'>
                         {feature.description}
-                      </span>
+                      </p>
+
+                      {/* 이미지 (가운데 정렬) */}
+                      {feature.image && (
+                        <div className='mt-6 w-full flex justify-center'>
+                          <Image
+                            src={feature.image}
+                            alt={feature.title}
+                            width={700} // 크기 조정
+                            height={400}
+                            className='rounded-lg shadow-lg'
+                          />
+                        </div>
+                      )}
                     </li>
                   ))}
                 </ul>

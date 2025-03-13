@@ -2,7 +2,7 @@
   {
     "id": "hellofit",
     "name": "HELLOFIT",
-    "description": "공공데이터 API를 활용하여 스포츠 이용권이 적용되는 시설을 탐색하는 서비스",
+    "description": "지도 기반 주변 인기 스포츠 시설을 간편하게 탐색하는 웹 서비스",
     "image": "/images/projects/hellofit.png",
     "techStack": [
       "React",
@@ -24,17 +24,10 @@
       "Backend": 1,
       "Designer": 1
     },
-    "features": [
-      "공공데이터 API 연동을 통한 스포츠 시설 탐색",
-      "이용권 필터링 및 검색 기능",
-      "NextAuth를 이용한 소셜 로그인 (Google, Kakao)",
-      "지도에서 현재 위치 탐색 및 시설 검색 기능",
-      "카카오 지도 API를 활용한 마커 렌더링 최적화"
-    ],
     "overview": {
       "title": "HELLOFIT 프로젝트 개요",
       "content": [
-        "HELLOFIT은 공공데이터 API를 활용하여 스포츠 이용권이 적용되는 시설을 탐색하는 서비스입니다.",
+        "HELLOFIT은 공공데이터를 활용하여 스포츠 이용권이 적용되는 시설을 탐색하는 서비스입니다.",
         "기존 스포츠 강좌 예약 시스템에서는 시설의 위치와 정보를 개별적으로 확인해야 하는 번거로움이 있었습니다.",
         "HELLOFIT은 지도 기반 탐색, 인기 시설 추천, 후기 시스템을 도입하여 사용자 경험을 개선하는 것을 목표로 합니다."
       ]
@@ -42,27 +35,33 @@
     "featuresDetail": [
       {
         "title": "지도 기반 스포츠 시설 탐색",
-        "description": "사용자의 현재 위치를 기반으로 가까운 스포츠 시설을 지도에서 탐색할 수 있도록 지원."
+        "description": "사용자의 현재 위치를 기반으로 가까운 스포츠 시설을 지도에서 탐색할 수 있도록 지원.",
+        "image": "/images/projects/hellofit/overview_1.png"
       },
       {
         "title": "이용권 유형별 맞춤 정보 제공",
-        "description": "일반 이용권과 장애인 이용권을 구분하여 맞춤형 정보를 제공."
+        "description": "일반 이용권과 장애인 이용권을 구분하여 맞춤형 정보를 제공.",
+        "image": "/images/projects/hellofit/overview_2.png"
       },
       {
         "title": "누적 수강생 수 기반 인기 스포츠 종목 추천",
-        "description": "누적 수강생 데이터를 기반으로 인기 있는 스포츠 종목을 분석하고 필터링 기능 제공."
+        "description": "누적 수강생 데이터를 기반으로 인기 있는 스포츠 종목을 분석하고 필터링 기능 제공.",
+        "image": "/images/projects/hellofit/overview_4.png"
       },
       {
         "title": "지역별 인기 시설 추천",
-        "description": "누적 수강생 수를 기반으로 인기 시설을 추천하여 사용자 맞춤 탐색 기능 강화."
+        "description": "누적 수강생 수를 기반으로 인기 시설을 추천하여 사용자 맞춤 탐색 기능 강화.",
+        "image": "/images/projects/hellofit/overview_5.png"
       },
       {
         "title": "시설 후기 및 별점 시스템",
-        "description": "시설 이용자의 후기를 등록하고 별점을 평가할 수 있는 기능 제공."
+        "description": "시설 이용자의 후기를 등록하고 별점을 평가할 수 있는 기능 제공.",
+        "image": "/images/projects/hellofit/overview_6.png"
       },
       {
         "title": "관심 시설 저장 및 알림 기능",
-        "description": "관심 시설 저장 및 신규 강좌 개설 알림 기능 제공."
+        "description": "관심 시설 저장 및 신규 강좌 개설 알림 기능 제공.",
+        "image": "/images/projects/hellofit/overview_7.png"
       }
     ],
     "development": {
