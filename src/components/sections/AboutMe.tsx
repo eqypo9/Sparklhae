@@ -35,11 +35,11 @@ export default function AboutMe() {
       <div className='relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 max-w-5xl mx-auto'>
         {/* 왼쪽 영역 - 프로필 + 상태 메시지 박스 */}
         <div
-          className='relative flex flex-col items-center bg-gray-900/80 px-8 py-10 
-                          rounded-2xl shadow-lg backdrop-blur-md w-full md:w-1/2'
+          className='relative flex flex-col items-center bg-gray-900/70 px-8 py-10 
+                          rounded-2xl shadow-lg w-full md:w-1/2'
         >
           {/* 우주비행사 아이콘 */}
-          <div className='relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white shadow-xl'>
+          <div className='relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gray-400 shadow-xl'>
             <Image
               src={astronautIcon}
               alt='Astronaut Icon'
@@ -97,8 +97,8 @@ export default function AboutMe() {
         <div className='flex flex-col items-center justify-center w-full md:w-1/2 gap-8'>
           {/* 기본 정보 카드 */}
           <div
-            className='bg-gray-900/80 p-6 md:p-8 rounded-2xl shadow-md 
-                          backdrop-blur-md max-w-lg self-center'
+            className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md 
+                           max-w-lg self-center'
           >
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
               INFORMATION
@@ -148,8 +148,8 @@ export default function AboutMe() {
 
           {/* 자격증 카드 */}
           <div
-            className='bg-gray-900/80 p-6 md:p-8 rounded-2xl shadow-md 
-                           backdrop-blur-md max-w-lg self-center'
+            className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md 
+                           max-w-lg self-center'
           >
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
               CERTIFICATIONS
@@ -162,7 +162,7 @@ export default function AboutMe() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.2 }}
                   className='p-4 rounded-lg shadow-md flex flex-col items-center 
-                            border border-white'
+                            border border-gray-400'
                 >
                   <Award size={36} className='text-white' />
                   <h4 className='text-lg font-semibold text-white mt-2'>

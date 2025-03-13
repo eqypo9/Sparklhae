@@ -17,6 +17,13 @@
     ],
     "deployLink": "https://www.hellofit.site/",
     "githubLink": "https://github.com/eqypo9/HelloFit_Front",
+    "team": true,
+    "teamSize": 4,
+    "teamMembers": {
+      "Frontend": 2,
+      "Backend": 1,
+      "Designer": 1
+    },
     "features": [
       "공공데이터 API 연동을 통한 스포츠 시설 탐색",
       "이용권 필터링 및 검색 기능",

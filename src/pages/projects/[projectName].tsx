@@ -7,6 +7,7 @@ export default function ProjectDetail() {
   const router = useRouter();
   const { projectName } = router.query;
   const project = projectsData.find((p) => p.id === projectName);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [activeTab, setActiveTab] = useState<
     'overview' | 'development' | 'troubleshooting'
@@ -26,15 +27,95 @@ export default function ProjectDetail() {
         {project.name}
       </h2>
 
-      <div className='flex justify-center'>
+      {/* 프로젝트 이미지 */}
+      <div className='flex flex-col items-center'>
         <Image
           src={project.image}
           alt={project.name}
           width={800}
           height={400}
-          className='rounded-lg shadow-lg'
+          className='rounded-lg shadow-lg hover:opacity-80 transition-opacity duration-200'
+          onClick={() => setIsModalOpen(true)}
         />
+
+        {/* 프로젝트 유형 (한가운데) */}
+        <div className='mt-4 text-lg text-gray-300 font-semibold text-center'>
+          {project.team
+            ? `팀 프로젝트 (${project.teamSize}명) - DE ${project.teamMembers.Designer} / FE ${project.teamMembers.Frontend} / BE ${project.teamMembers.Backend}`
+            : '개인 프로젝트'}
+        </div>
+
+        {/* Github & Live Site (아래 가로 정렬) */}
+        <div className='mt-4 w-full flex flex-wrap justify-center gap-6 text-gray-300 text-lg border-b border-gray-700 pb-4'>
+          <div className='flex items-center space-x-2'>
+            <span className='text-cosmic_teal font-semibold'>Github:</span>
+            <a
+              href={project.githubLink}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hover:text-cosmic_teal underline decoration-gray-500'
+            >
+              {project.githubLink}
+            </a>
+          </div>
+
+          <div className='flex items-center space-x-2'>
+            <span className='text-cosmic_teal font-semibold'>Live Site:</span>
+            <a
+              href={project.deployLink}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='hover:text-cosmic_teal underline decoration-gray-500'
+            >
+              {project.deployLink}
+            </a>
+          </div>
+        </div>
       </div>
+
+      {/* 모달 */}
+      {isModalOpen && (
+        <div
+          className='fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50'
+          onClick={() => setIsModalOpen(false)}
+        >
+          <div className='relative p-4 max-w-3xl w-full'>
+            {/* 닫기 버튼 */}
+            <button
+              className='absolute top-4 right-4 text-white text-2xl'
+              onClick={() => setIsModalOpen(false)}
+            >
+              ✕
+            </button>
+
+            {/* 이미지 */}
+            <Image
+              src={project.image}
+              alt={project.name}
+              width={1000}
+              height={600}
+              className='rounded-lg shadow-lg'
+            />
+          </div>
+        </div>
+      )}
+
+      {/* 기술 스택 */}
+      {project.techStack?.length > 0 && (
+        <div className='mt-12'>
+          <h3 className='text-3xl font-bold text-cosmic_teal'>기술 스택</h3>
+          <div className='flex flex-wrap gap-3 mt-4'>
+            {project.techStack?.map((tech, index) => (
+              <span
+                key={index}
+                className='bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-2 text-sm font-semibold rounded-full text-gray-300 shadow-lg transition-all duration-300 hover:scale-105 hover:from-cosmic_teal hover:to-cyan-500 hover:text-black'
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* 탭 메뉴 */}
       <div className='flex mt-12 border-b border-gray-700 justify-center space-x-8'>
@@ -63,12 +144,10 @@ export default function ProjectDetail() {
 
       {/* 탭 내용 */}
       <div className='mt-10 font-light text-gray-300'>
-        {/* 소개 (overview) */}
+        {/* 프로젝트 소개 */}
         {activeTab === 'overview' && (
           <div>
             <p className='text-lg'>{project.description}</p>
-
-            {/* 프로젝트 개요 (overview 존재 여부 확인) */}
             {project.overview?.content && (
               <>
                 <h3 className='text-3xl font-bold mt-10 text-cosmic_teal'>
@@ -107,28 +186,10 @@ export default function ProjectDetail() {
                 주요 기능이 제공되지 않았습니다.
               </p>
             )}
-
-            {/* 기술 스택 */}
-            {project.techStack?.length > 0 && (
-              <>
-                <h3 className='text-3xl font-bold mt-10 text-cosmic_teal'>
-                  기술 스택
-                </h3>
-                <div className='flex flex-wrap gap-3 mt-4'>
-                  {project.techStack?.map((tech, index) => (
-                    <span
-                      key={index}
-                      className='bg-gradient-to-r from-gray-800 to-gray-700 px-4 py-2 text-sm font-semibold rounded-full text-gray-300 shadow-lg transition-all duration-300 hover:scale-105 hover:from-cosmic_teal hover:to-cyan-500 hover:text-black'
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </>
-            )}
           </div>
         )}
 
+        {/* 개발 과정 */}
         {activeTab === 'development' &&
           typeof project.development === 'object' && (
             <div>
@@ -154,6 +215,7 @@ export default function ProjectDetail() {
             </div>
           )}
 
+        {/* 트러블슈팅 */}
         {activeTab === 'troubleshooting' &&
           typeof project.troubleshooting === 'object' && (
             <div>
@@ -169,7 +231,7 @@ export default function ProjectDetail() {
                     <p className='text-lg text-gray-400 mt-2'>
                       {issue.problem}
                     </p>
-                    <h5 className='text-lg font-semibold text-green-400 mt-4'>
+                    <h5 className='text-lg font-semibold text-cosmic_teal mt-4'>
                       해결 방법
                     </h5>
                     <ul className='list-disc list-inside mt-2 space-y-2'>
