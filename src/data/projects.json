@@ -193,7 +193,7 @@
   {
     "id": "global-nomad",
     "name": "Global Nomad",
-    "description": "여행 시 체험 상품을 간편하게 예약하는 서비스",
+    "description": "여행지에서 체험 상품을 간편하게 예약할 수 있는 서비스",
     "image": "/images/projects/global-nomad.png",
     "techStack": [
       "React",
@@ -202,19 +202,133 @@
       "React Query",
       "Zustand",
       "Tailwind CSS",
-      "React Query",
       "ESlint",
       "Prettier"
     ],
     "deployLink": "https://nomad-ebon.vercel.app/",
     "githubLink": "https://github.com/eqypo9/global-nomad",
-    "features": [
-      "여행 체험 상품 예약 시스템",
-      "지도 기반 위치 검색",
-      "사용자 리뷰 시스템"
+
+    "overview": {
+      "title": "프로젝트 개요",
+      "content": [
+        "Global Nomad은 여행지에서 체험 상품을 쉽고 빠르게 예약할 수 있도록 돕는 서비스입니다.",
+        "기존 예약 시스템은 체험 상품의 가격 비교가 어렵고, 사용자가 정보를 일일이 찾아야 하는 불편함이 있었습니다.",
+        "Global Nomad은 지도 기반 탐색, 예약 일정 관리, 사용자 리뷰 기능을 통해 직관적인 경험을 제공합니다."
+      ]
+    },
+
+    "featuresDetail": [
+      {
+        "title": "체험 상품 예약 시스템",
+        "description": "여행 중 체험 상품을 간편하게 예약할 수 있는 기능 제공.",
+        "image": "/images/projects/global-nomad/booking.png"
+      },
+      {
+        "title": "지도 기반 위치 검색",
+        "description": "사용자가 원하는 지역의 체험 상품을 지도에서 쉽게 탐색할 수 있도록 지원.",
+        "image": "/images/projects/global-nomad/map.png"
+      },
+      {
+        "title": "사용자 리뷰 및 별점 시스템",
+        "description": "체험 상품에 대한 사용자 리뷰와 별점 평가 기능 제공.",
+        "image": "/images/projects/global-nomad/review.png"
+      },
+      {
+        "title": "예약 내역 관리",
+        "description": "사용자가 예약한 체험 상품을 관리하고 변경할 수 있는 기능 제공.",
+        "image": "/images/projects/global-nomad/reservation.png"
+      },
+      {
+        "title": "반응형 예약 UI",
+        "description": "PC, 태블릿, 모바일 환경에 맞게 최적화된 예약 UI 제공.",
+        "image": [
+          "/images/projects/global-nomad/예약카드(pc).png",
+          "/images/projects/global-nomad/예약카드(tb).png",
+          "/images/projects/global-nomad/예약카드(mb).png"
+        ]
+      },
+      {
+        "title": "다크 모드 지원",
+        "description": "사용자의 시각적 편의를 고려한 다크 모드 기능 추가.",
+        "image": "/images/projects/global-nomad/darkmode.png"
+      }
     ],
-    "retrospective": "## 프로젝트 회고\n- **예약 시스템을 설계하며 백엔드 API와의 협업 중요성을 경험**\n- **React Query의 비동기 데이터 관리 최적화 기술 습득**",
-    "troubleshooting": "## 트러블슈팅\n### 🚧 체험 상품 데이터가 업데이트되지 않음\n**🔍 문제:** React Query의 데이터가 자동으로 최신화되지 않음\n\n**✅ 해결:** React Query의 `refetchInterval`을 추가하여 최신 데이터 유지"
+
+    "development": {
+      "title": "개발 과정",
+      "sections": [
+        {
+          "title": "핵심 기여",
+          "content": [
+            "React Query를 활용하여 예약 데이터의 비동기 상태 관리 최적화.",
+            "Zustand를 사용하여 전역 상태 관리 간소화 및 성능 개선.",
+            "SSR을 적용하여 SEO 최적화 및 초기 로딩 속도 개선.",
+            "Tailwind CSS로 반응형 UI를 구축하여 다양한 디바이스에서 최적의 UX 제공."
+          ]
+        },
+        {
+          "title": "예약 시스템 최적화",
+          "content": [
+            "React Query의 `refetchInterval`을 활용하여 실시간 예약 상태 유지.",
+            "비동기 요청을 `useMutation`으로 관리하여 예약 프로세스 최적화."
+          ],
+          "code": {
+            "description": "예약 상태를 최신으로 유지하는 React Query 코드",
+            "snippet": "const { data, refetch } = useQuery(['reservation', userId], fetchReservation, { refetchInterval: 30000 });"
+          }
+        },
+        {
+          "title": "Zustand를 활용한 전역 상태 관리",
+          "content": [
+            "Redux 대비 가벼운 Zustand를 활용하여 전역 상태 관리를 간소화.",
+            "예약 정보 및 사용자 데이터를 효율적으로 관리하도록 개선."
+          ],
+          "code": {
+            "description": "Zustand를 활용한 상태 관리 코드",
+            "snippet": "const useStore = create((set) => ({ reservation: null, setReservation: (data) => set({ reservation: data }) }));"
+          }
+        },
+        {
+          "title": "다크 모드 상태 관리",
+          "content": [
+            "Zustand를 활용하여 다크 모드 상태를 전역적으로 관리.",
+            "Tailwind CSS를 사용해 UI 스타일을 동적으로 변경."
+          ],
+          "code": {
+            "description": "Zustand를 활용한 다크 모드 상태 관리 코드",
+            "snippet": "const useDarkMode = create((set) => ({ isDarkMode: false, toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })) }));"
+          }
+        }
+      ]
+    },
+
+    "troubleshooting": {
+      "title": "트러블슈팅",
+      "issues": [
+        {
+          "title": "체험 상품 데이터가 업데이트되지 않음",
+          "problem": "React Query의 데이터가 자동으로 최신화되지 않음.",
+          "solution": [
+            "React Query의 `refetchInterval`을 추가하여 최신 데이터 유지.",
+            "사용자가 특정 액션을 수행할 때 `refetch()`를 호출하도록 변경."
+          ],
+          "lesson": "비동기 데이터 관리는 단순한 상태 관리 이상으로, 사용자의 행동과 연관하여 최적화할 필요가 있음을 배웠습니다.",
+          "code": {
+            "description": "React Query의 refetchInterval 설정",
+            "snippet": "const { data, refetch } = useQuery(['reservation', userId], fetchReservation, { refetchInterval: 30000 });"
+          }
+        },
+        {
+          "title": "캘린더 스타일 충돌 문제",
+          "problem": "react-datepicker의 내장 CSS와 커스텀 CSS가 충돌하여 스타일 적용이 어려웠음.",
+          "solution": [
+            "react-datepicker 대신 react-calendar을 활용하여 커스텀 스타일을 적용.",
+            "별도의 `calendar.module.css` 파일을 만들어 라이브러리와 충돌 없이 스타일링."
+          ],
+          "lesson": "라이브러리의 기본 스타일을 커스터마이징할 때는 외부 CSS 충돌을 방지하는 방식이 중요하다는 점을 배웠습니다."
+        }
+      ]
+    }
   },
   {
     "id": "the-julge",
