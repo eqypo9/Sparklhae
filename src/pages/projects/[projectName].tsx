@@ -7,6 +7,7 @@ import OverviewTab from '@/components/tabs/OverviewTab';
 import DevelopmentTab from '@/components/tabs/DevelopmentTab';
 import TroubleshootingTab from '@/components/tabs/TroubleShootingTab';
 import ImageModal from '@/components/ImageModal';
+import FloatingProjects from '@/components/FloatingProjects';
 
 export default function ProjectDetail() {
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function ProjectDetail() {
 
   return (
     <section className='py-32 px-8 max-w-5xl mx-auto text-gray-200'>
+      <FloatingProjects />
       {/* 프로젝트 제목 */}
       <h2 className='text-5xl font-extrabold mb-8 text-center tracking-wide text-cosmic_teal'>
         {project.name}
