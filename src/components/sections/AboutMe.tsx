@@ -3,6 +3,7 @@ import { useState } from 'react';
 import GridBackground from '@/components/GridBackground';
 import Image from 'next/image';
 import astronautIcon from '../../../public/favicon.ico';
+import myPhoto from '../../../public/images/my-photo.png';
 import {
   ArrowLeft,
   ArrowRight,
@@ -11,11 +12,17 @@ import {
   Mail,
   Github,
   BookOpen,
+  MousePointer,
 } from 'lucide-react';
 import { messages, certifications } from '@/data/aboutData';
 
 export default function AboutMe() {
   const [index, setIndex] = useState(0);
+  const [isPhotoVisible, setIsPhotoVisible] = useState(false);
+
+  const toggleImage = () => {
+    setIsPhotoVisible((prev) => !prev);
+  };
 
   const handleNext = () => {
     setIndex((prev) => (prev + 1) % messages.length);
@@ -32,29 +39,65 @@ export default function AboutMe() {
     >
       <GridBackground />
 
-      <div className='relative z-10 flex flex-col md:flex-row items-center justify-center gap-12 max-w-5xl mx-auto'>
+      <div className='relative z-10 flex flex-col md:flex-row items-stretch justify-center gap-12 max-w-5xl mx-auto'>
         {/* 왼쪽 영역 - 프로필 + 상태 메시지 박스 */}
         <div
           className='relative flex flex-col items-center bg-gray-900/70 px-8 py-10 
-                          rounded-2xl shadow-lg w-full md:w-1/2'
+                rounded-2xl shadow-lg w-full md:w-1/2 md:h-full flex-grow'
         >
-          {/* 우주비행사 아이콘 */}
-          <div className='relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gray-400 shadow-xl'>
-            <Image
-              src={astronautIcon}
-              alt='Astronaut Icon'
-              layout='fill'
-              objectFit='cover'
-            />
+          {/* 우주비행사 (클릭 시 내 프로필 사진으로 변경) */}
+          <div
+            className='relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gray-400 shadow-xl cursor-pointer'
+            onClick={toggleImage}
+          >
+            <motion.div
+              className='absolute inset-0 w-full h-full'
+              animate={{ opacity: isPhotoVisible ? 0 : 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={astronautIcon}
+                alt='Astronaut Image'
+                layout='fill'
+                objectFit='cover'
+              />
+            </motion.div>
+
+            <motion.div
+              className='absolute inset-0 w-full h-full rounded-full overflow-hidden'
+              animate={{ opacity: isPhotoVisible ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={myPhoto}
+                alt='My Photo'
+                layout='fill'
+                objectFit='cover'
+              />
+            </motion.div>
           </div>
+
+          {/* 클릭 안내 텍스트 */}
+          {!isPhotoVisible && (
+            <motion.div
+              initial={{ opacity: 1, scale: 1 }}
+              animate={{ opacity: [1, 0.4, 1], scale: [1, 1.1, 1] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+              className='absolute top-[15px] left-[43%] translate-x-[-60px]
+               text-white text-sm font-semibold 
+               whitespace-nowrap z-20 text-center'
+            >
+              Click Me !
+            </motion.div>
+          )}
 
           {/* 프로필 정보 */}
           <h2 className='text-2xl font-bold mt-4 tracking-wide text-white'>
             정성혜
           </h2>
           <p className='text-sm text-gray-300 mt-1'>웹 프론트엔드 개발자</p>
+          <p className='text-sm text-gray-200 mt-1'>1999.06.13</p>
 
-          {/* 구분선 */}
           <div className='w-full border-t border-gray-500/50 my-6'></div>
 
           {/* 상태 메시지 */}
@@ -93,13 +136,10 @@ export default function AboutMe() {
           </div>
         </div>
 
-        {/* 오른쪽 영역 - 기본 정보 & 자격증 (한가운데 정렬) */}
-        <div className='flex flex-col items-center justify-center w-full md:w-1/2 gap-8'>
+        {/* 오른쪽 영역 - 기본 정보 & 자격증 */}
+        <div className='flex flex-col items-center justify-center w-full md:w-1/2 md:h-full flex-grow gap-8'>
           {/* 기본 정보 카드 */}
-          <div
-            className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md 
-                           max-w-lg self-center'
-          >
+          <div className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md max-w-lg w-full'>
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
               INFORMATION
             </h3>
@@ -147,10 +187,7 @@ export default function AboutMe() {
           </div>
 
           {/* 자격증 카드 */}
-          <div
-            className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md 
-                           max-w-lg self-center'
-          >
+          <div className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md max-w-lg w-full'>
             <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
               CERTIFICATIONS
             </h3>
@@ -161,8 +198,7 @@ export default function AboutMe() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.2 }}
-                  className='p-4 rounded-lg shadow-md flex flex-col items-center 
-                            border border-gray-400'
+                  className='p-4 rounded-lg shadow-md flex flex-col items-center border border-gray-400'
                 >
                   <Award size={36} className='text-white' />
                   <h4 className='text-lg font-semibold text-white mt-2'>
