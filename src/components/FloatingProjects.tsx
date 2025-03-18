@@ -35,6 +35,8 @@ export default function FloatingProjects() {
         onClick={() => setIsOpen(!isOpen)}
         className='relative flex items-center justify-center'
         whileHover={{ rotate: 20, scale: 1.1 }}
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
       >
         <Image
           src='/images/moon.png'
