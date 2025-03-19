@@ -28,7 +28,8 @@ export default function ProjectDetail() {
 
   return (
     <section className='py-32 px-8 max-w-5xl mx-auto text-gray-200'>
-      <FloatingProjects />
+      <FloatingProjects key={router.asPath} />
+
       {/* 프로젝트 제목 */}
       <h2 className='text-5xl font-extrabold mb-8 text-center tracking-wide text-cosmic_teal'>
         {project.name}
