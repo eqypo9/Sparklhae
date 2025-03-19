@@ -12,7 +12,6 @@ import {
   Mail,
   Github,
   BookOpen,
-  MousePointer,
 } from 'lucide-react';
 import { messages, certifications } from '@/data/aboutData';
 
