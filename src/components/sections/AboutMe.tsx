@@ -42,9 +42,9 @@ export default function AboutMe() {
         {/* 왼쪽 영역 - 프로필 + 상태 메시지 박스 */}
         <div
           className='relative flex flex-col items-center bg-gray-900/70 px-8 py-10 
-                rounded-2xl shadow-lg w-full md:w-1/2 md:h-full flex-grow'
+            rounded-2xl shadow-lg w-full md:w-1/2 md:h-full flex-grow'
         >
-          {/* 우주비행사 (클릭 시 내 프로필 사진으로 변경) */}
+          {/* 프로필 이미지 전환 */}
           <div
             className='relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-2 border-gray-400 shadow-xl cursor-pointer'
             onClick={toggleImage}
@@ -105,19 +105,27 @@ export default function AboutMe() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className='text-xl md:text-2xl font-bold mb-2 text-cosmic_teal tracking-wide text-center'
+            className='text-xl md:text-2xl font-bold mb-4 text-cosmic_teal tracking-wide text-center'
           >
             {messages[index].title}
           </motion.h3>
-          <motion.p
-            key={messages[index].content}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className='text-md md:text-lg font-semibold text-gray-300 leading-snug text-center'
-          >
-            {messages[index].content}
-          </motion.p>
+
+          <div className='space-y-2 max-w-md mx-auto'>
+            {messages[index].content
+              .trim()
+              .split('\n')
+              .map((line, i) => (
+                <motion.p
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className='text-md md:text-lg font-semibold text-gray-300 leading-relaxed text-center'
+                >
+                  {line}
+                </motion.p>
+              ))}
+          </div>
 
           {/* 페이지 인디케이터 */}
           <div className='text-sm text-gray-400 mt-4'>

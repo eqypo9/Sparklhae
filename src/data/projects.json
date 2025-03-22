@@ -82,9 +82,9 @@
         {
           "title": "카카오 지도 API 성능 최적화",
           "content": [
-            "카카오 지도 API의 불필요한 중복 실행을 방지하기 위해 useKakaoMapLoader 훅을 도입.",
-            "지도 초기화 과정에서 useEffect를 활용하여 API 스크립트 로드와 상태 관리를 최적화.",
-            "역지오코딩을 적용하여 사용자의 현재 위치를 기반으로 자동으로 지역명을 설정."
+            "카카오 지도 API의 불필요한 중복 실행을 방지하기 위해 useKakaoMapLoader 훅을 도입",
+            "지도 초기화 과정에서 useEffect를 활용하여 API 스크립트 로드와 상태 관리를 최적화",
+            "역지오코딩을 적용하여 사용자의 현재 위치를 기반으로 자동으로 지역명을 설정"
           ],
           "code": {
             "description": "카카오 지도 API 스크립트 로드 및 사용자의 현재 위치 적용",
@@ -106,8 +106,8 @@
         {
           "title": "Recoil을 활용한 지도 필터 상태 관리",
           "content": [
-            "Recoil을 활용하여 사용자가 선택한 스포츠 종목 필터를 상태로 관리.",
-            "필터 상태가 변경될 때마다 마커가 갱신되도록 구현."
+            "Recoil을 활용하여 사용자가 선택한 스포츠 종목 필터를 상태로 관리",
+            "필터 상태가 변경될 때마다 마커가 갱신되도록 구현"
           ],
           "code": {
             "description": "Recoil을 활용한 지도 필터 상태 코드",
@@ -145,13 +145,13 @@
       "issues": [
         {
           "title": "마커 플리커 현상 & 과도한 API 호출 문제",
-          "problem": "시설 목록이 변경될 때마다 기존 마커를 삭제하고 새로 생성하여 UI가 깜빡이며, 과도한 API 요청이 발생하여 성능이 저하됨.",
+          "problem": "시설 목록이 변경될 때마다 기존 마커를 삭제하고 새로 생성하여 UI가 깜빡이며, 과도한 API 요청이 발생하여 성능이 저하됨",
           "solution": [
-            "useFacilityMarkers 훅을 도입하여 기존 마커를 유지하며 필요한 경우만 업데이트.",
+            "useFacilityMarkers 훅을 도입하여 기존 마커를 유지하며 필요한 경우만 업데이트",
             "AbortController를 활용하여 불필요한 API 요청을 방지.",
-            "좌표 변환(fetchCoordinates)을 병렬 처리하여 렌더링 속도 개선."
+            "좌표 변환(fetchCoordinates)을 병렬 처리하여 렌더링 속도 개선"
           ],
-          "lesson": "API 호출을 최적화하는 것이 성능 개선에 중요한 영향을 미친다는 점을 실감했습니다. 특히, 불필요한 리렌더링을 줄이는 것이 사용자 경험(UX)에 미치는 영향을 직접 확인할 수 있었습니다.",
+          "lesson": "API 호출을 최적화하는 것이 성능 개선에 중요한 영향을 미친다는 점을 실감. 특히, 불필요한 리렌더링을 줄이는 것이 사용자 경험(UX)에 미치는 영향을 직접 확인.",
           "code": {
             "description": "좌표 변환을 병렬 처리하여 렌더링 속도를 개선",
             "snippet": "const coordinates = await Promise.all(facilities.map(facility => fetchCoordinates(facility)));"
@@ -159,12 +159,12 @@
         },
         {
           "title": "현재 위치 탐색 시 불필요한 API 호출 문제",
-          "problem": "사용자가 현재 위치 버튼을 여러 번 클릭하면 같은 API 요청이 반복 호출되면서 성능이 저하됨.",
+          "problem": "사용자가 현재 위치 버튼을 여러 번 클릭하면 같은 API 요청이 반복 호출되면서 성능이 저하됨",
           "solution": [
-            "usePositionButton 훅을 활용하여 사용자의 위치를 캐싱하고, 한 번 가져온 위치를 재사용하도록 개선.",
-            "위치 허용 여부를 확인하여 허용하지 않을 경우 기본 위치를 설정."
+            "usePositionButton 훅을 활용하여 사용자의 위치를 캐싱하고, 한 번 가져온 위치를 재사용하도록 개선",
+            "위치 허용 여부를 확인하여 허용하지 않을 경우 기본 위치를 설정"
           ],
-          "lesson": "사용자의 행동 패턴을 고려하여 API 요청을 최적화하는 것이 중요하다는 점을 배웠습니다. 불필요한 중복 요청을 줄이는 방식(캐싱, 상태 관리 등)을 적용하면 성능과 UX를 동시에 개선할 수 있음을 경험했습니다.",
+          "lesson": "사용자의 행동 패턴을 고려하여 API 요청을 최적화하는 것이 중요하다는 점을 배움. 불필요한 중복 요청을 줄이는 방식(캐싱, 상태 관리 등)을 적용하면 성능과 UX를 동시에 개선할 수 있음을 경험.",
           "code": {
             "description": "사용자의 위치를 캐싱하여 불필요한 호출 방지",
             "snippet": "const [cachedLocation, setCachedLocation] = useState(null);\nconst moveToUserLocation = () => {\n  if (cachedLocation) { map.setCenter(cachedLocation); return; }\n  navigator.geolocation.getCurrentPosition(position => {\n    const userLatLng = new kakao.maps.LatLng(position.coords.latitude, position.coords.longitude);\n    setCachedLocation(userLatLng);\n    map.setCenter(userLatLng);\n  });\n};"
@@ -172,22 +172,22 @@
         },
         {
           "title": "지도 이동 시 마커 초기화 문제",
-          "problem": "지도를 이동할 때 기존 마커가 유지되지 않고 다시 그려지는 문제 발생.",
+          "problem": "지도를 이동할 때 기존 마커가 유지되지 않고 다시 그려지는 문제 발생",
           "solution": [
-            "useFacilityMarkers 훅에서 기존 마커를 재사용할 수 있도록 개선.",
-            "setCenter 호출 시 기존 마커가 유지되도록 수정.",
-            "useEffect 의존성을 최소화하여 불필요한 리렌더링 방지."
+            "useFacilityMarkers 훅에서 기존 마커를 재사용할 수 있도록 개선",
+            "setCenter 호출 시 기존 마커가 유지되도록 수정",
+            "useEffect 의존성을 최소화하여 불필요한 리렌더링 방지"
           ],
-          "lesson": "불필요한 상태 변경을 방지하고, 최소한의 리렌더링으로 데이터를 유지하는 것이 성능 최적화에 큰 영향을 미친다는 것을 배웠습니다. useEffect의 의존성을 관리하는 것이 중요한 이유를 다시 한번 실감했습니다."
+          "lesson": "불필요한 상태 변경을 방지하고, 최소한의 리렌더링으로 데이터를 유지하는 것이 성능 최적화에 큰 영향을 미친다는 것을 배움. useEffect의 의존성을 관리하는 것이 중요한 이유를 다시 한번 실감."
         },
         {
           "title": "지역 검색 시 정확하지 않은 검색 결과",
-          "problem": "검색된 지역명이 너무 길거나 복잡하여 API가 정확한 좌표를 반환하지 않는 경우 발생.",
+          "problem": "검색된 지역명이 너무 길거나 복잡하여 API가 정확한 좌표를 반환하지 않는 경우 발생",
           "solution": [
-            "simplifyRegionName 유틸 함수를 사용하여 시/군/구 단위로 변환.",
-            "kakao.maps.services.Geocoder() 호출 시 검색 결과를 검증하여 첫 번째 결과만 사용."
+            "simplifyRegionName 유틸 함수를 사용하여 시/군/구 단위로 변환",
+            "kakao.maps.services.Geocoder() 호출 시 검색 결과를 검증하여 첫 번째 결과만 사용"
           ],
-          "lesson": "외부 API를 사용할 때는 데이터가 항상 정확하다고 가정하면 안 된다는 점을 깨달았습니다. 데이터를 정제하고 가공하는 로직이 사용자 경험에 중요한 영향을 미친다는 점을 배웠습니다."
+          "lesson": "외부 API를 사용할 때는 데이터가 항상 정확하다고 가정하면 안 된다는 점을 깨달음. 데이터를 정제하고 가공하는 로직이 사용자 경험에 중요한 영향을 미친다는 점을 배움."
         }
       ]
     }
@@ -228,27 +228,27 @@
     "featuresDetail": [
       {
         "title": "체험 상품 예약 시스템",
-        "description": "여행 중 체험 상품을 간편하게 예약할 수 있는 기능 제공.",
+        "description": "여행 중 체험 상품을 간편하게 예약할 수 있는 기능 제공",
         "image": "/images/projects/global-nomad/booking.png"
       },
       {
         "title": "지도 기반 위치 검색",
-        "description": "사용자가 원하는 지역의 체험 상품을 지도에서 쉽게 탐색할 수 있도록 지원.",
+        "description": "사용자가 원하는 지역의 체험 상품을 지도에서 쉽게 탐색할 수 있도록 지원",
         "image": "/images/projects/global-nomad/map.png"
       },
       {
         "title": "사용자 리뷰 및 별점 시스템",
-        "description": "체험 상품에 대한 사용자 리뷰와 별점 평가 기능 제공.",
+        "description": "체험 상품에 대한 사용자 리뷰와 별점 평가 기능 제공",
         "image": "/images/projects/global-nomad/review.png"
       },
       {
         "title": "예약 내역 관리",
-        "description": "사용자가 예약한 체험 상품을 관리하고 변경할 수 있는 기능 제공.",
+        "description": "사용자가 예약한 체험 상품을 관리하고 변경할 수 있는 기능 제공",
         "image": "/images/projects/global-nomad/reservation.png"
       },
       {
         "title": "반응형 예약 UI",
-        "description": "PC, 태블릿, 모바일 환경에 맞게 최적화된 예약 UI 제공.",
+        "description": "PC, 태블릿, 모바일 환경에 맞게 최적화된 예약 UI 제공",
         "image": [
           "/images/projects/global-nomad/예약카드(pc).png",
           "/images/projects/global-nomad/예약카드(tb).png",
@@ -257,7 +257,7 @@
       },
       {
         "title": "다크 모드 지원",
-        "description": "사용자의 시각적 편의를 고려한 다크 모드 기능 추가.",
+        "description": "사용자의 시각적 편의를 고려한 다크 모드 기능 추가",
         "image": "/images/projects/global-nomad/darkmode.png"
       }
     ],
@@ -268,19 +268,19 @@
         {
           "title": "핵심 기여",
           "content": [
-            "React Query를 활용하여 예약 데이터의 비동기 상태 관리 최적화.",
-            "Zustand를 사용하여 전역 상태 관리 간소화 및 성능 개선.",
-            "SSR을 적용하여 SEO 최적화 및 초기 로딩 속도 개선.",
-            "Tailwind CSS로 반응형 UI를 구축하여 다양한 디바이스에서 최적의 UX 제공.",
-            "Airbnb ESLint를 도입하여 코드 일관성 유지 및 협업 환경 개선."
+            "React Query를 활용하여 예약 데이터의 비동기 상태 관리 최적화",
+            "Zustand를 사용하여 전역 상태 관리 간소화 및 성능 개선",
+            "SSR을 적용하여 SEO 최적화 및 초기 로딩 속도 개선",
+            "Tailwind CSS로 반응형 UI를 구축하여 다양한 디바이스에서 최적의 UX 제공",
+            "Airbnb ESLint를 도입하여 코드 일관성 유지 및 협업 환경 개선"
           ]
         },
         {
           "title": "화면 크기에 따른 예약 UI 렌더링",
           "content": [
-            "PC, 태블릿, 모바일 환경에 맞춰 최적화된 UI를 제공하기 위해 `useMediaQuery` 커스텀 훅을 도입.",
-            "각 디바이스에 맞춰 `FloatingCard`, `TabletCard`, `MobileCard` 컴포넌트를 분리하여 렌더링.",
-            "화면 크기 변경을 감지하고 적절한 UI를 적용하는 방식을 구현."
+            "PC, 태블릿, 모바일 환경에 맞춰 최적화된 UI를 제공하기 위해 `useMediaQuery` 커스텀 훅을 도입",
+            "각 디바이스에 맞춰 `FloatingCard`, `TabletCard`, `MobileCard` 컴포넌트를 분리하여 렌더링",
+            "화면 크기 변경을 감지하고 적절한 UI를 적용하는 방식을 구현"
           ],
           "code": {
             "description": "useMediaQuery를 활용한 반응형 UI 적용 코드",
@@ -290,9 +290,9 @@
         {
           "title": "예약 시스템 최적화",
           "content": [
-            "React Query의 `refetchInterval`을 활용하여 실시간 예약 상태 유지.",
-            "비동기 요청을 `useMutation`으로 관리하여 예약 프로세스 최적화.",
-            "페이지네이션을 적용하여 리뷰 데이터를 효율적으로 로드하도록 개선."
+            "React Query의 `refetchInterval`을 활용하여 실시간 예약 상태 유지",
+            "비동기 요청을 `useMutation`으로 관리하여 예약 프로세스 최적화",
+            "페이지네이션을 적용하여 리뷰 데이터를 효율적으로 로드하도록 개선"
           ],
           "code": {
             "description": "React Query를 활용한 예약 상태 유지 및 비동기 데이터 관리 코드",
@@ -302,9 +302,9 @@
         {
           "title": "SSR을 활용한 SEO 최적화",
           "content": [
-            "검색 엔진 최적화를 위해 Next.js의 `getServerSideProps`를 활용하여 서버 사이드 렌더링 적용.",
-            "SEO를 고려한 `meta` 태그와 `Open Graph` 설정 추가.",
-            "동적 페이지에서도 SNS 미리보기가 정상적으로 표시되도록 최적화."
+            "검색 엔진 최적화를 위해 Next.js의 `getServerSideProps`를 활용하여 서버 사이드 렌더링 적용",
+            "SEO를 고려한 `meta` 태그와 `Open Graph` 설정 추가",
+            "동적 페이지에서도 SNS 미리보기가 정상적으로 표시되도록 최적화"
           ],
           "code": {
             "description": "SSR을 활용한 SEO 최적화 코드",
@@ -314,9 +314,9 @@
         {
           "title": "Zustand를 활용한 전역 상태 관리",
           "content": [
-            "Redux 대비 가벼운 Zustand를 활용하여 전역 상태 관리를 간소화.",
-            "예약 정보 및 사용자 데이터를 효율적으로 관리하도록 개선.",
-            "상태 변경 시 불필요한 리렌더링을 방지하여 성능 최적화."
+            "Redux 대비 가벼운 Zustand를 활용하여 전역 상태 관리를 간소화",
+            "예약 정보 및 사용자 데이터를 효율적으로 관리하도록 개선",
+            "상태 변경 시 불필요한 리렌더링을 방지하여 성능 최적화"
           ],
           "code": {
             "description": "Zustand를 활용한 상태 관리 코드",
@@ -326,9 +326,9 @@
         {
           "title": "다크 모드 상태 관리",
           "content": [
-            "Zustand를 활용하여 다크 모드 상태를 전역적으로 관리.",
-            "Tailwind CSS를 사용해 UI 스타일을 동적으로 변경.",
-            "사용자가 다크 모드를 선택하면 상태가 저장되어 페이지 새로고침 후에도 유지되도록 구현."
+            "Zustand를 활용하여 다크 모드 상태를 전역적으로 관리",
+            "Tailwind CSS를 사용해 UI 스타일을 동적으로 변경",
+            "사용자가 다크 모드를 선택하면 상태가 저장되어 페이지 새로고침 후에도 유지되도록 구현"
           ],
           "code": {
             "description": "Zustand를 활용한 다크 모드 상태 관리 코드",
@@ -338,9 +338,9 @@
         {
           "title": "Airbnb ESLint 적용 경험",
           "content": [
-            "Airbnb ESLint를 도입하여 코드 컨벤션을 통일하고 가독성을 향상.",
-            "기본적인 Best Practice(예: 화살표 함수, 객체 구조 분해, 불필요한 변수 제거 등)를 적용하는 습관을 형성.",
-            "Prettier와 함께 사용하여 자동 코드 포맷팅을 적용하고, 팀원 간 코드 일관성을 유지."
+            "Airbnb ESLint를 도입하여 코드 컨벤션을 통일하고 가독성을 향상",
+            "기본적인 Best Practice(예: 화살표 함수, 객체 구조 분해, 불필요한 변수 제거 등)를 적용하는 습관을 형성",
+            "Prettier와 함께 사용하여 자동 코드 포맷팅을 적용하고, 팀원 간 코드 일관성을 유지"
           ],
           "code": {
             "description": "Airbnb ESLint 적용 후 변경된 코드 예시",
@@ -355,11 +355,11 @@
       "issues": [
         {
           "title": "useMediaQuery 초기 렌더링 오류",
-          "problem": "Next.js의 서버 사이드 렌더링(SSR)에서 window 객체를 참조하여 useMediaQuery가 초기 렌더링 시 오류 발생.",
+          "problem": "Next.js의 서버 사이드 렌더링(SSR)에서 window 객체를 참조하여 useMediaQuery가 초기 렌더링 시 오류 발생",
           "solution": [
-            "useEffect를 사용하여 클라이언트에서만 window 객체를 참조하도록 변경."
+            "useEffect를 사용하여 클라이언트에서만 window 객체를 참조하도록 변경"
           ],
-          "lesson": "Next.js 환경에서는 SSR 시 window 객체를 직접 사용할 수 없으므로, 클라이언트 사이드에서만 실행되도록 분리해야 함.",
+          "lesson": "Next.js 환경에서는 SSR 시 window 객체를 직접 사용할 수 없으므로, 클라이언트 사이드에서만 실행되도록 분리해야 함",
           "code": {
             "description": "useEffect를 활용한 useMediaQuery 수정 코드",
             "snippet": "const isTablet = useMediaQuery(768, 1024);\nconst isMobile = useMediaQuery(0, 768);\nuseEffect(() => { setIsMobile(window.innerWidth <= 768); }, []);"
@@ -367,11 +367,11 @@
         },
         {
           "title": "다크 모드 상태 유지 문제",
-          "problem": "Zustand를 활용하여 다크 모드 상태를 관리했지만, 페이지 새로고침 시 설정이 초기화됨.",
+          "problem": "Zustand를 활용하여 다크 모드 상태를 관리했지만, 페이지 새로고침 시 설정이 초기화됨",
           "solution": [
-            "Zustand의 persist 미들웨어를 사용하여 localStorage에 저장되도록 설정."
+            "Zustand의 persist 미들웨어를 사용하여 localStorage에 저장되도록 설정"
           ],
-          "lesson": "사용자의 설정을 유지하려면 전역 상태 관리뿐만 아니라 브라우저 저장소(localStorage)를 활용하는 것이 중요함.",
+          "lesson": "사용자의 설정을 유지하려면 전역 상태 관리뿐만 아니라 브라우저 저장소(localStorage)를 활용하는 것이 중요함",
           "code": {
             "description": "Zustand persist 미들웨어 적용 코드",
             "snippet": "const useDarkMode = create(persist((set) => ({ isDarkMode: false, toggleDarkMode: () => set((state) => ({ isDarkMode: !state.isDarkMode })) }), { name: 'dark-mode' }));"
@@ -379,20 +379,20 @@
         },
         {
           "title": "Airbnb ESLint 적용 후 코드 수정 이슈",
-          "problem": "ESLint Airbnb 스타일 가이드 적용 후 기존 코드에서 여러 규칙 위반이 발생하여 빌드 실패.",
+          "problem": "ESLint Airbnb 스타일 가이드 적용 후 기존 코드에서 여러 규칙 위반이 발생하여 빌드 실패",
           "solution": [
-            "ESLint 규칙을 학습하고, `eslint --fix`를 실행하여 자동으로 코드 스타일을 맞춤.",
-            "불필요한 console.log 제거, 화살표 함수 사용 등 Airbnb 스타일 가이드에 맞게 코드 리팩토링."
+            "ESLint 규칙을 학습하고, `eslint --fix`를 실행하여 자동으로 코드 스타일을 맞춤",
+            "불필요한 console.log 제거, 화살표 함수 사용 등 Airbnb 스타일 가이드에 맞게 코드 리팩토링"
           ],
-          "lesson": "린트 도구를 적용하면 코드 일관성이 유지되지만, 기존 코드와 충돌할 수 있어 점진적인 적용이 필요함."
+          "lesson": "린트 도구를 적용하면 코드 일관성이 유지되지만, 기존 코드와 충돌할 수 있어 점진적인 적용이 필요함"
         },
         {
           "title": "React Query 캐싱 문제로 예약 데이터가 즉시 반영되지 않음",
-          "problem": "예약 후 데이터를 새로고침하지 않으면 UI에서 즉시 반영되지 않음.",
+          "problem": "예약 후 데이터를 새로고침하지 않으면 UI에서 즉시 반영되지 않음",
           "solution": [
-            "useQueryClient의 `invalidateQueries`를 활용하여 특정 쿼리 캐시를 무효화하여 최신 데이터가 반영되도록 수정."
+            "useQueryClient의 `invalidateQueries`를 활용하여 특정 쿼리 캐시를 무효화하여 최신 데이터가 반영되도록 수정"
           ],
-          "lesson": "API 데이터를 실시간으로 반영하려면 적절한 캐시 무효화 전략을 적용해야 함.",
+          "lesson": "API 데이터를 실시간으로 반영하려면 적절한 캐시 무효화 전략을 적용해야 함",
           "code": {
             "description": "React Query의 invalidateQueries 적용 코드",
             "snippet": "const queryClient = useQueryClient();\nconst handleReservation = async () => {\n  await makeReservation();\n  queryClient.invalidateQueries(['reservation']);\n};"
@@ -400,11 +400,11 @@
         },
         {
           "title": "SEO 최적화 시 메타 태그 적용 문제",
-          "problem": "next/head를 사용한 메타 태그 설정이 일부 동적 페이지에서 적용되지 않음.",
+          "problem": "next/head를 사용한 메타 태그 설정이 일부 동적 페이지에서 적용되지 않음",
           "solution": [
-            "getServerSideProps에서 메타 정보를 동적으로 생성하여 SSR에서 올바르게 렌더링되도록 수정."
+            "getServerSideProps에서 메타 정보를 동적으로 생성하여 SSR에서 올바르게 렌더링되도록 수정"
           ],
-          "lesson": "SEO 최적화를 위해 SSR과 SSG의 차이를 이해하고, 동적 컨텐츠에는 SSR을 활용해야 함.",
+          "lesson": "SEO 최적화를 위해 SSR과 SSG의 차이를 이해하고, 동적 컨텐츠에는 SSR을 활용해야 함",
           "code": {
             "description": "SSR을 활용한 메타 태그 적용 코드",
             "snippet": "export const getServerSideProps: GetServerSideProps = async (context) => {\n  const { id } = context.query;\n  const data = await fetchActivityData(id);\n  return { props: { metaTitle: data.title, metaDescription: data.description } };\n};"
@@ -465,18 +465,18 @@
         {
           "title": "핵심 기여",
           "content": [
-            "React Query를 사용하여 공고 데이터의 비동기 상태를 최적화하여 실시간 반영 가능하도록 개선.",
-            "Zustand를 활용하여 전역 상태를 효율적으로 관리.",
-            "로컬 스토리지를 이용한 최근 본 공고 기능 구현.",
-            "Styled Components를 활용한 컴포넌트 기반 스타일링.",
-            "ESLint 및 Prettier를 도입하여 코드 일관성을 유지."
+            "React Query를 사용하여 공고 데이터의 비동기 상태를 최적화하여 실시간 반영 가능하도록 개선",
+            "Zustand를 활용하여 전역 상태를 효율적으로 관리",
+            "로컬 스토리지를 이용한 최근 본 공고 기능 구현",
+            "Styled Components를 활용한 컴포넌트 기반 스타일링",
+            "ESLint 및 Prettier를 도입하여 코드 일관성을 유지"
           ]
         },
         {
           "title": "최근 본 공고 저장 기능",
           "content": [
-            "로컬 스토리지를 활용하여 사용자가 최근 본 공고를 6개까지 저장하도록 구현.",
-            "사용자가 새 공고를 조회하면 가장 오래된 공고를 제거하고 새로운 공고를 추가하는 방식으로 관리."
+            "로컬 스토리지를 활용하여 사용자가 최근 본 공고를 6개까지 저장하도록 구현",
+            "사용자가 새 공고를 조회하면 가장 오래된 공고를 제거하고 새로운 공고를 추가하는 방식으로 관리"
           ],
           "code": {
             "description": "로컬 스토리지를 활용한 최근 본 공고 저장 코드",
@@ -486,9 +486,9 @@
         {
           "title": "ESLint 및 Prettier 적용",
           "content": [
-            "Airbnb 스타일 가이드를 적용하여 코드 일관성을 유지.",
-            "자동 코드 정리를 통해 협업 시 가독성을 높이고 코드 리뷰 효율을 개선.",
-            "React 및 TypeScript 환경에서 발생할 수 있는 린트 오류를 최소화하도록 설정."
+            "Airbnb 스타일 가이드를 적용하여 코드 일관성을 유지",
+            "자동 코드 정리를 통해 협업 시 가독성을 높이고 코드 리뷰 효율을 개선",
+            "React 및 TypeScript 환경에서 발생할 수 있는 린트 오류를 최소화하도록 설정"
           ],
           "code": {
             "description": "ESLint 적용 후 코드 스타일 변경 예시",
@@ -502,21 +502,21 @@
       "issues": [
         {
           "title": "localStorage 데이터 동기화 문제",
-          "problem": "최근 본 공고 기능이 새로고침 시 반영되지 않거나 일부 데이터가 유실됨.",
+          "problem": "최근 본 공고 기능이 새로고침 시 반영되지 않거나 일부 데이터가 유실됨",
           "solution": [
-            "로컬 스토리지에서 데이터를 가져오는 로직을 useEffect를 활용하여 초기 렌더링 시 실행되도록 수정.",
-            "데이터 저장 시 JSON 변환 오류를 방지하기 위해 예외 처리 추가."
+            "로컬 스토리지에서 데이터를 가져오는 로직을 useEffect를 활용하여 초기 렌더링 시 실행되도록 수정",
+            "데이터 저장 시 JSON 변환 오류를 방지하기 위해 예외 처리 추가"
           ],
-          "lesson": "클라이언트 저장소를 활용할 때 데이터 동기화가 중요한 요소임을 배움."
+          "lesson": "클라이언트 저장소를 활용할 때 데이터 동기화가 중요한 요소임을 배움"
         },
         {
           "title": "React Query 캐싱 문제로 공고 상태가 갱신되지 않음",
-          "problem": "공고 지원 후 UI에서 즉시 반영되지 않는 문제 발생.",
+          "problem": "공고 지원 후 UI에서 즉시 반영되지 않는 문제 발생",
           "solution": [
-            "React Query의 `invalidateQueries`를 활용하여 캐시를 무효화하여 최신 데이터 반영.",
-            "useMutation을 사용하여 상태 변경 후 refetch를 실행하도록 처리."
+            "React Query의 `invalidateQueries`를 활용하여 캐시를 무효화하여 최신 데이터 반영",
+            "useMutation을 사용하여 상태 변경 후 refetch를 실행하도록 처리"
           ],
-          "lesson": "캐시를 적극적으로 활용하되, 최신 데이터를 유지하기 위한 캐시 무효화 전략이 필요함."
+          "lesson": "캐시를 적극적으로 활용하되, 최신 데이터를 유지하기 위한 캐시 무효화 전략이 필요함"
         }
       ]
     }
