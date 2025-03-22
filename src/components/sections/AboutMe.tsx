@@ -217,6 +217,31 @@ export default function AboutMe() {
               ))}
             </div>
           </div>
+
+          {/* 링크 카드 */}
+          <div className='bg-gray-900/70 p-6 md:p-8 rounded-2xl shadow-md max-w-lg w-full'>
+            <h3 className='text-2xl font-bold text-cosmic_teal text-center mb-4 tracking-wide'>
+              LINKS
+            </h3>
+            <div className='flex flex-wrap justify-center gap-4'>
+              <a
+                href='/docs/resume.pdf'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white text-white font-semibold text-sm hover:bg-cosmic_teal hover:text-black transition'
+              >
+                Resume
+              </a>
+              <a
+                href='/docs/portfolio.pdf'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white text-white font-semibold text-sm hover:bg-cosmic_teal hover:text-black transition'
+              >
+                Portfolio
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
