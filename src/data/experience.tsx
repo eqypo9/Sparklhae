@@ -56,6 +56,16 @@ Next.js 기반 프로젝트 개발 및 성능 최적화 경험.
 구글 캘린더 API를 연동하여 일정 유무에 따른 회의실 예약 관리. 
 URL Shortener 개발을 통해 사용자 편의성을 크게 향상시킴.`,
   },
+  {
+    category: 'Current Job',
+    icon: <Briefcase size={32} className='text-white' />,
+    period: '2025.05 - 재직 중',
+    description: '제로투원파트너스 | 프론트엔드 엔지니어',
+    details: `Daily.co 기반 화상 상담 기능 설계 및 구현  
+Zotai로 미디어 설정 상태를 페이지 간 연동  
+디자이너와 UI 흐름 개선 협업 및 UX 제안  
+API 누락 및 중복 호출 정리로 구조 개선 및 성능 최적화`,
+  },
 ];
 
 export default experienceData;
